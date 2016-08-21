@@ -9,14 +9,14 @@
       <content type="html"><![CDATA[<blockquote>
 <p>纸上得来终觉浅，绝知此事要躬行</p>
 </blockquote>
-<h1 id="所谓缘由"><a href="#所谓缘由" class="headerlink" title="所谓缘由"></a>所谓缘由</h1><p>总觉得bog是跟自己很遥远的事情，直到现在搭建属于自己的bog，事情总发展的出乎预料。具体的搭建看了很多，主要参考 <a href="http://sunwhut.com/2015/10/30/buildBlog/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">如何利用GitHub Pages和Hexo快速搭建个人博客</a>，关键是很喜欢这款主题，哈哈，拖延这么久能下静下心来做出来可能也有点这个原因，以前是觉得既然以后想做技术，没个博客总感觉少点啥，但是一直懒惰癌晚期发作，不过做完之后发现也没有想的那么复杂，哈哈！</p>
+<h1 id="所谓缘由"><a href="#所谓缘由" class="headerlink" title="所谓缘由"></a>所谓缘由</h1><p>总觉得bog是跟自己很遥远的事情，直到现在搭建属于自己的bog，事情总发展的出乎预料。具体的搭建看了很多，主要参考 <a href="http://sunwhut.com/2015/10/30/buildBlog/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">如何利用GitHub Pages和Hexo快速搭建个人博客</a>，关键是很喜欢这款主题，哈哈，拖延这么久能下静下心来做出来可能也有点这个原因，以前是觉得既然以后想做技术，没个博客总感觉少点啥，但是一直懒惰癌晚期发作，不过做完之后发现也没有想的那么复杂，哈哈！<br><a id="more"></a>s</p>
 <h1 id="立个flag"><a href="#立个flag" class="headerlink" title="立个flag"></a>立个flag</h1>]]></content>
     </entry>
     
     <entry>
       <title><![CDATA[Hello World]]></title>
       <url>http://yoursite.com/2016/08/15/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
