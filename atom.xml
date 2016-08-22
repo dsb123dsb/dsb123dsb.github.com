@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>XX雨中人</title>
   <subtitle>纸上得来终觉浅，绝知此事要躬行</subtitle>
-  <link href="/hexo/atom.xml" rel="self"/>
+  <link href="/cs/github/hexo/atom.xml" rel="self"/>
   
-  <link href="https://dsb123dsb.github.io/hexo/"/>
+  <link href="https://dsb123dsb.github.io/cs/github/hexo/"/>
   <updated>2016-08-21T11:43:39.039Z</updated>
-  <id>https://dsb123dsb.github.io/hexo/</id>
+  <id>https://dsb123dsb.github.io/cs/github/hexo/</id>
   
   <author>
     <name>弃疾</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>终于搭建出自己博客啦 </title>
-    <link href="https://dsb123dsb.github.io/hexo/2016/08/21/%E7%BB%88%E4%BA%8E%E6%90%AD%E5%BB%BA%E5%87%BA%E8%87%AA%E5%B7%B1%E5%8D%9A%E5%AE%A2%E5%95%A6/"/>
-    <id>https://dsb123dsb.github.io/hexo/2016/08/21/终于搭建出自己博客啦/</id>
+    <link href="https://dsb123dsb.github.io/cs/github/hexo/2016/08/21/%E7%BB%88%E4%BA%8E%E6%90%AD%E5%BB%BA%E5%87%BA%E8%87%AA%E5%B7%B1%E5%8D%9A%E5%AE%A2%E5%95%A6/"/>
+    <id>https://dsb123dsb.github.io/cs/github/hexo/2016/08/21/终于搭建出自己博客啦/</id>
     <published>2016-08-21T02:23:15.000Z</published>
     <updated>2016-08-21T11:43:39.039Z</updated>
     
@@ -37,17 +37,17 @@
     
     </summary>
     
-      <category term="搭建bog" scheme="https://dsb123dsb.github.io/hexo/categories/%E6%90%AD%E5%BB%BAbog/"/>
+      <category term="搭建bog" scheme="https://dsb123dsb.github.io/cs/github/hexo/categories/%E6%90%AD%E5%BB%BAbog/"/>
     
     
-      <category term="hexo" scheme="https://dsb123dsb.github.io/hexo/tags/hexo/"/>
+      <category term="hexo" scheme="https://dsb123dsb.github.io/cs/github/hexo/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://dsb123dsb.github.io/hexo/2016/08/15/hello-world/"/>
-    <id>https://dsb123dsb.github.io/hexo/2016/08/15/hello-world/</id>
+    <link href="https://dsb123dsb.github.io/cs/github/hexo/2016/08/15/hello-world/"/>
+    <id>https://dsb123dsb.github.io/cs/github/hexo/2016/08/15/hello-world/</id>
     <published>2016-08-15T15:41:21.952Z</published>
     <updated>2016-08-21T11:41:48.220Z</updated>
     
@@ -68,10 +68,10 @@
     
     </summary>
     
-      <category term="搭建bog" scheme="https://dsb123dsb.github.io/hexo/categories/%E6%90%AD%E5%BB%BAbog/"/>
+      <category term="搭建bog" scheme="https://dsb123dsb.github.io/cs/github/hexo/categories/%E6%90%AD%E5%BB%BAbog/"/>
     
     
-      <category term="initial" scheme="https://dsb123dsb.github.io/hexo/tags/initial/"/>
+      <category term="initial" scheme="https://dsb123dsb.github.io/cs/github/hexo/tags/initial/"/>
     
   </entry>
   
