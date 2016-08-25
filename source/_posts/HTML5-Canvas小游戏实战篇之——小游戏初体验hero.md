@@ -1,7 +1,7 @@
 ---
 title: HTML5 Canvas小游戏实战篇—小游戏初体验hero
 date: 2016-08-23 18:36:12
-tags: [html5,js,小游戏]
+tags: [html5,js,<font color=#00ff face="黑体"size=4>小游戏</font>]
 categories: 编程实战
 ---
 首先是我参考的英文原作出处:[How to make a simple HTML5 Canvas game](http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/)，当然也有译文也有的:[如何开发一个简单的HTML5 Canvas 小游戏](http://www.cnblogs.com/Wayou/p/how-to-make-a-simple-html5-canvas-game.html)，在参考原文的基础上做了很多改进。
