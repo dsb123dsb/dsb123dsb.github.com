@@ -4,7 +4,7 @@ date: 2016-08-23 18:36:12
 tags: [html5,js,<font color=#00ff face="黑体"size=4>小游戏</font>]
 categories: 编程实战
 ---
-首先是我参考的英文原作出处:[How to make a simple HTML5 Canvas game](http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/)，当然也有译文也有的:[如何开发一个简单的HTML5 Canvas 小游戏](http://www.cnblogs.com/Wayou/p/how-to-make-a-simple-html5-canvas-game.html)，在参考原文的基础上做了很多改进。
+&emsp;&emsp;首先是我参考的英文原作出处:[How to make a simple HTML5 Canvas game](http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/)，当然也有译文也有的:[如何开发一个简单的HTML5 Canvas 小游戏](http://www.cnblogs.com/Wayou/p/how-to-make-a-simple-html5-canvas-game.html)，在参考原文的基础上做了很多改进。
 
  ### 附：[源码地址（欢迎fork、star）](https://github.com/dsb123dsb/simple_canvas_game01/tree/hero2.0)  ， [点击链接试玩（触摸设备不支持）](http://yhgame.cethik.vip/)   ###
 > 以下是自己具体创作过程:
@@ -26,7 +26,7 @@ categories: 编程实战
 	var ctx = canvas.getContext("2d");
 	  };
 {% endcodeblock %}
-首先我们需要创建一张画布作为游戏的舞台。这里通过JS代码也可以实现以上效果，不过我选择直接在HTML里写canvas、audio元素，有了画布后就可以获得它的上下文来进行绘图了。然后我们还设置了画布大小，最后将其添加到页面上。
+&emsp;&emsp;首先我们需要创建一张画布作为游戏的舞台。这里通过JS代码也可以实现以上效果，不过我选择直接在HTML里写canvas、audio元素，有了画布后就可以获得它的上下文来进行绘图了。然后我们还设置了画布大小，最后将其添加到页面上。
 # 2.准备图片 
 {% codeblock lang:js %}
 	//背景图片
@@ -181,7 +181,7 @@ reset方法用于开始新一轮和游戏，在这个方法里我们将英雄放
 	reset();
 	main();
 	{% endcodeblock %}
-总算完成了，这是本游戏最后一段代码了。先是设置一个初始的时间变量then用于首先运行main函数使用。然后调用 reset 函数来开始新一轮游戏（如果你还记得的话，这个函数的作用是将英雄放到画面中间同时将怪物放到随机的地方以方便英雄去捉它）。
+&emsp;&emsp;总算完成了，这是本游戏最后一段代码了。先是设置一个初始的时间变量then用于首先运行main函数使用。然后调用 reset 函数来开始新一轮游戏（如果你还记得的话，这个函数的作用是将英雄放到画面中间同时将怪物放到随机的地方以方便英雄去捉它）。
 > 最后，本来准备添加事件，实现在触摸设备上操作，不过由于懒癌犯没有测试，纪念下，蟹蟹！来副美图愉悦下身心，哈哈
 
-![](http://oc8oqce74.bkt.clouddn.com/monentum03)
+![](https://oci0xa33t.qnssl.com/monentum03)
