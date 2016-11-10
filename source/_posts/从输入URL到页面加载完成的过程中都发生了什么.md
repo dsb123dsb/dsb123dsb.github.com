@@ -1,7 +1,7 @@
 ---
 title: 从输入URL到页面加载完成的过程中都发生了什么
 date: 2016-09-24 22:43:41
-tags: [http,经典面题，browser]
+tags: [http,经典面题,browser]
 categories: 基础杂谈
 type:
 ---

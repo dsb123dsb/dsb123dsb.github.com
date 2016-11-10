@@ -1,7 +1,7 @@
 ---
 title: 使用console进行性能测试和计算代码运行时间
 date: 2016-09-22 09:30:06
-tags: [console,技巧，js]
+tags: [console,技巧,js]
 categories: tools
 type:
 ---
