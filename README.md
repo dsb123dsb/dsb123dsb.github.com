@@ -46,3 +46,26 @@
 
     在 scaffolds/post.md 中添加
     categories:
+# 5.next主题添加背景特效 #
+
+
+1. 修改_layout.swig
+
+打开next/layout/_layout.swig
+在</body>之前添加如下代码
+
+	{% if theme.canvas_nest %}
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+	{% endif %}
+
+2. 修改主题配置文件
+
+打开/next/_config.yml，添加以下代码
+	
+	# --------------------------------------------------------------
+	# background settings
+	# --------------------------------------------------------------
+	# add canvas-nest effect
+	# see detail from https://github.com/hustcc/canvas-nest.js
+    canvas_nest: true
+3. next主题有三种模式，我用的是pisces，文章背景色为白色，会遮挡特效，所以需要根据个人需要需改透明度

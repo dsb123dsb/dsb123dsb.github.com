@@ -142,6 +142,20 @@ type:
 	}
 {% endcodeblock %}
 &emsp;&emsp;上面的做的设置当然是不能所有设备全适配，但是用JS是可以实现全适配。具体用哪个就要根据自己的实际工作场景去定了。
+```js
+(function (doc, win) {
+var docEl = doc.documentElement,
+resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+recalc = function () {
+var clientWidth = docEl.clientWidth;
+if (!clientWidth) return;
+docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+};
+if (!doc.addEventListener) return;
+win.addEventListener(resizeEvt, recalc, false);
+doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
+```
 
 &emsp;&emsp;下面推荐两个国内用了rem技术的移动站，大家可以上去参考看看他们的做法，手机淘宝目前只有首页用了rem，淘宝native app的首页是内嵌的web app首页。
 

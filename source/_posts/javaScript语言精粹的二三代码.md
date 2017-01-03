@@ -50,6 +50,10 @@ type:
 	document.writeln('&lt;&quto;&gt;&ll'.deentityify());
 {% endcodeblock %}
 # 去掉js数组中重复项 #
+```js
+	var arr=[1,2,3,3,2,3,5];
+	[...new Set(arr)];
+```
 {% codeblock lang:js %}
 	function unique(arr) {
 	      var result = [], isRepeated;
@@ -82,6 +86,7 @@ type:
 	}
 	unique2([1,2,1,23,3]);//用一个hashtable的结构记录已有的元素，这样就可以避免内层循环
 {% endcodeblock %}
+
 # js去除数组中的空元素 #
 {% codeblock lang:js %}
 	 var array = [1,2,,,4,6,,,,,,55];
