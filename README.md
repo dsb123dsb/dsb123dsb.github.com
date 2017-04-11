@@ -69,3 +69,4 @@
 	# see detail from https://github.com/hustcc/canvas-nest.js
     canvas_nest: true
 3. next主题有三种模式，我用的是pisces，文章背景色为白色，会遮挡特效，所以需要根据个人需要需改透明度
+4. 根据左耳朵耗子博客添加high一下特效
