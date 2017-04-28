@@ -30,6 +30,7 @@ type:
     <!-- 路由匹配到的组件将渲染在这里 --> 
 	<router-view></router-view>
 ```
+值得一提的是2.0将若切换路由时要保留之前状态，将`keep-alive`属性改成`<keep-alive></keep-alive>`标签
 ## js定义路由 ##
 2.0定义路由更加方便，删除了一些方法，创建router，可以直接将组件作为一个对象传入，然后把router挂载到根实例就好
 <!--more-->
