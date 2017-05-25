@@ -6,6 +6,7 @@ categories: 技术分享
 type:
 ---
 >纸上得来终觉浅，绝知此事要躬行
+
 # 前言 #
 中文原文（“大漠”，W3CPlus创始人，目前就职于手淘。）猛搓[http://www.w3cplus.com/css3/playing-with-css-grid-layout.html](http://www.w3cplus.com/css3/playing-with-css-grid-layout.html著作权归作者所有。)（原文很多概念并未涉及，个人建议将作者建议的一些中文外文链接参考也阅读了，以期全面了解和掌握）
 
