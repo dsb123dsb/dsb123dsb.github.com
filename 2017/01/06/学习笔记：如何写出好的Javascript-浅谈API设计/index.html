@@ -1,0 +1,1122 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js,ES6," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XX雨中人" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="写在前面-最近学习Es6的异步操作和Async函数，然后就看着这篇文章，自己也做了些改进和思考，也体验一把一种需求的各种实现！！  原文出处：十年踪迹 这是 奇舞前端特训营 JavaScript 培训课程 的节选。很多同学觉得写 JavaScript 很简单，只要能写出功能来，效果能实现就好。还有一些培训机构，专门教人写各种“炫酷特效”，以此让许多人觉得这些培训很“牛逼”。然而事实上，能写 Ja">
+<meta name="keywords" content="js,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何写出好的Javascript-浅谈API设计">
+<meta property="og:url" content="https://dsb123dsb.github.io/2017/01/06/学习笔记：如何写出好的Javascript-浅谈API设计/index.html">
+<meta property="og:site_name" content="XX雨中人">
+<meta property="og:description" content="写在前面-最近学习Es6的异步操作和Async函数，然后就看着这篇文章，自己也做了些改进和思考，也体验一把一种需求的各种实现！！  原文出处：十年踪迹 这是 奇舞前端特训营 JavaScript 培训课程 的节选。很多同学觉得写 JavaScript 很简单，只要能写出功能来，效果能实现就好。还有一些培训机构，专门教人写各种“炫酷特效”，以此让许多人觉得这些培训很“牛逼”。然而事实上，能写 Ja">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://p3.ssl.qhimg.com/t0111abe7db051d82e7.jpg">
+<meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2017/01/5356e9d0260caf148eb70627496345d8.jpg">
+<meta property="og:updated_time" content="2017-10-03T13:53:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何写出好的Javascript-浅谈API设计">
+<meta name="twitter:description" content="写在前面-最近学习Es6的异步操作和Async函数，然后就看着这篇文章，自己也做了些改进和思考，也体验一把一种需求的各种实现！！  原文出处：十年踪迹 这是 奇舞前端特训营 JavaScript 培训课程 的节选。很多同学觉得写 JavaScript 很简单，只要能写出功能来，效果能实现就好。还有一些培训机构，专门教人写各种“炫酷特效”，以此让许多人觉得这些培训很“牛逼”。然而事实上，能写 Ja">
+<meta name="twitter:image" content="https://p3.ssl.qhimg.com/t0111abe7db051d82e7.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://dsb123dsb.github.io/2017/01/06/学习笔记：如何写出好的Javascript-浅谈API设计/"/>
+
+  <title> 如何写出好的Javascript-浅谈API设计 | XX雨中人 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?89786e28f5fb3f9f58b9f5eb39bd6a1e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">XX雨中人</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">纸上得来终觉浅，绝知此事要躬行</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+	<a class="highOne" title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&amp;&amp;s.height<n&amp;&amp;s.width>t&amp;&amp;s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&amp;&amp;!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&amp;&amp;t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>High一下!</a>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何写出好的Javascript-浅谈API设计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-06T15:14:08+08:00" content="2017-01-06">
+              2017-01-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术分享/" itemprop="url" rel="index">
+                    <span itemprop="name">技术分享</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/06/学习笔记：如何写出好的Javascript-浅谈API设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/06/学习笔记：如何写出好的Javascript-浅谈API设计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/06/学习笔记：如何写出好的Javascript-浅谈API设计/" class="leancloud_visitors" data-flag-title="如何写出好的Javascript-浅谈API设计">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>写在前面-最近学习Es6的异步操作和Async函数，然后就看着这篇文章，自己也做了些改进和思考，也体验一把一种需求的各种实现！！</p>
+</blockquote>
+<p>原文出处：<a href="https://www.h5jun.com/post/how-to-write-better-js-code.html" target="_blank" rel="external">十年踪迹</a></p>
+<p>这是 <a href="https://t.75team.com/" target="_blank" rel="external">奇舞前端特训营</a> <a href="http://ppt.baomitu.com/display?slide_id=abd5083a#/21" target="_blank" rel="external">JavaScript 培训课程</a> 的节选。很多同学觉得写 JavaScript 很简单，只要能写出功能来，效果能实现就好。还有一些培训机构，专门教人写各种“炫酷特效”，以此让许多人觉得这些培训很“牛逼”。然而事实上，能写 JavaScript 和写好 JavaScript 这中间还有很遥远的距离。成为专业前端，注定在 JavaScript 路途上需要一步步扎实的修炼，没有捷径。<br><img src="https://p3.ssl.qhimg.com/t0111abe7db051d82e7.jpg" alt=""><br><a id="more"></a></p>
+<h1 id="看一个简单的例子："><a href="#看一个简单的例子：" class="headerlink" title="看一个简单的例子："></a>看一个简单的例子：</h1><p>实现一个类似于“交通灯”的效果，让三个不同颜色的圆点每隔 2 秒循环切换。</p>
+<h2 id="对应的-HTML-和-CSS-如下："><a href="#对应的-HTML-和-CSS-如下：" class="headerlink" title="对应的 HTML 和 CSS 如下："></a>对应的 HTML 和 CSS 如下：</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">XHTML</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"traffic"</span> <span class="attr">class</span>=<span class="string">"wait"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"traffic"</span> <span class="attr">class</span>=<span class="string">"wait"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	<span class="selector-id">#traffic</span> &gt; <span class="selector-tag">li</span>&#123;</div><div class="line">	  <span class="attribute">display</span>: block;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="selector-id">#traffic</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	  <span class="attribute">display</span>: inline-block;</div><div class="line">	  <span class="attribute">width</span>: <span class="number">50px</span>;</div><div class="line">	  <span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">	  <span class="attribute">background-color</span>: gray;</div><div class="line">	  <span class="attribute">margin</span>: <span class="number">5px</span>;</div><div class="line">	  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="selector-id">#traffic</span><span class="selector-class">.stop</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(1)</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	  <span class="attribute">background-color</span>: <span class="number">#a00</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="selector-id">#traffic</span><span class="selector-class">.wait</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(2)</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	  <span class="attribute">background-color</span>: <span class="number">#aa0</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="selector-id">#traffic</span><span class="selector-class">.pass</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(3)</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	  <span class="attribute">background-color</span>: <span class="number">#0a0</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="selector-id">#traffic</span> &gt; <span class="selector-tag">li</span>&#123;</div><div class="line">	  <span class="attribute">display</span>: block;</div><div class="line">	&#125;</div><div class="line">	 </div><div class="line">	<span class="selector-id">#traffic</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	  <span class="attribute">display</span>: inline-block;</div><div class="line">	  <span class="attribute">width</span>: <span class="number">50px</span>;</div><div class="line">	  <span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">	  <span class="attribute">background-color</span>: gray;</div><div class="line">	  <span class="attribute">margin</span>: <span class="number">5px</span>;</div><div class="line">	  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">	&#125;</div><div class="line">	 </div><div class="line">	<span class="selector-id">#traffic</span><span class="selector-class">.stop</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(1)</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	  <span class="attribute">background-color</span>: <span class="number">#a00</span>;</div><div class="line">	&#125;</div><div class="line">	 </div><div class="line">	<span class="selector-id">#traffic</span><span class="selector-class">.wait</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(2)</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	  <span class="attribute">background-color</span>: <span class="number">#aa0</span>;</div><div class="line">	&#125;</div><div class="line">	 </div><div class="line">	<span class="selector-id">#traffic</span><span class="selector-class">.pass</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(3)</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	  <span class="attribute">background-color</span>: <span class="number">#0a0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么这一功能的 JavaScript 该如何实现呢？</p>
+<h1 id="版本一-定时器嵌套"><a href="#版本一-定时器嵌套" class="headerlink" title="版本一 定时器嵌套"></a>版本一 定时器嵌套</h1><p>有的同学说，这个实现还不简单嘛？直接用几个定时器一下切换不就好了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  traffic.className = <span class="string">"wait"</span>;</div><div class="line"></div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      traffic.className = <span class="string">"stop"</span>;</div><div class="line">      setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        traffic.className = <span class="string">"pass"</span>;</div><div class="line">        setTimeout(reset, <span class="number">2000</span>)</div><div class="line">      &#125;, <span class="number">2000</span>)</div><div class="line">  &#125;, <span class="number">2000</span>);</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"> </div><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  traffic.className = <span class="string">"wait"</span>;</div><div class="line"> </div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      traffic.className = <span class="string">"stop"</span>;</div><div class="line">      setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        traffic.className = <span class="string">"pass"</span>;</div><div class="line">        setTimeout(reset, <span class="number">2000</span>)</div><div class="line">      &#125;, <span class="number">2000</span>)</div><div class="line">  &#125;, <span class="number">2000</span>);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>没错，就这个功能本身，这样实现就 OK 了。但是这样实现有什么问题呢？</p>
+<p>首先是过程耦合，状态切换是wait-&gt;stop-&gt;pass 循环，在上面的设计里，实际上操作顺序是耦合在一起的，要先 ‘wait’，然后等待 2000 毫秒再 ‘stop’，然后再等待 2000 毫秒在 ‘pass’，这中间的顺序一旦有调整，需求有变化，代码都需要修改。</p>
+<p>其次，这样的异步嵌套是会产生 callback hell 的，如果需求不是三盏灯，而是五盏灯、十盏灯，代码的嵌套结构就很深，看起来就很难看了。</p>
+<p>所以我们说，版本一方法虽然直接，但因为抽象程度很低（几乎没有提供任何抽象 API），它的扩展性很不好，因为异步问题没处理，代码结构也很不好。如果只能写这样的代码，是不能说就写好了 JavaScript 的。</p>
+<h1 id="版本二-数据抽象"><a href="#版本二-数据抽象" class="headerlink" title="版本二 数据抽象"></a>版本二 数据抽象</h1><p>要解决版本一的过程耦合问题，最简单的思路是将状态[‘wait’,’stop’,’pass’]抽象出来：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> stateList = [<span class="string">"wait"</span>, <span class="string">"stop"</span>, <span class="string">"pass"</span>];</div><div class="line"></div><div class="line"><span class="keyword">var</span> currentStateIndex = <span class="number">0</span>;</div><div class="line"></div><div class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> state = stateList[currentStateIndex];</div><div class="line">  traffic.className = state;</div><div class="line">  currentStateIndex = (currentStateIndex + <span class="number">1</span>) % stateList.length;</div><div class="line">&#125;, <span class="number">2000</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"> </div><div class="line"><span class="keyword">var</span> stateList = [<span class="string">"wait"</span>, <span class="string">"stop"</span>, <span class="string">"pass"</span>];</div><div class="line"> </div><div class="line"><span class="keyword">var</span> currentStateIndex = <span class="number">0</span>;</div><div class="line"> </div><div class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> state = stateList[currentStateIndex];</div><div class="line">  traffic.className = state;</div><div class="line">  currentStateIndex = (currentStateIndex + <span class="number">1</span>) % stateList.length;</div><div class="line">&#125;, <span class="number">2000</span>);</div></pre></td></tr></table></figure>
+<p>这是一种数据抽象的思路，应用它我们得到了上面的这个版本。</p>
+<p>这一版本比前一版本要好很多，但是它也有问题，最大的问题就是封装性很差，它把 stateList 和 currentStateIndex 都暴露出来了，而且以全局变量的形式，这么做很不好，需要优化。</p>
+<h1 id="版本三-良好封装"><a href="#版本三-良好封装" class="headerlink" title="版本三 良好封装"></a>版本三 良好封装</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params">traffic, stateList</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> currentStateIndex = <span class="number">0</span>;</div><div class="line"></div><div class="line">  setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> state = stateList[currentStateIndex];</div><div class="line">    traffic.className = state;</div><div class="line">    currentStateIndex = (currentStateIndex + <span class="number">1</span>) % stateList.length;</div><div class="line">  &#125;, <span class="number">2000</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">start(traffic, [<span class="string">"wait"</span>, <span class="string">"stop"</span>, <span class="string">"pass"</span>]);</div><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params">traffic, stateList</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> currentStateIndex = <span class="number">0</span>;</div><div class="line"> </div><div class="line">  setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> state = stateList[currentStateIndex];</div><div class="line">    traffic.className = state;</div><div class="line">    currentStateIndex = (currentStateIndex + <span class="number">1</span>) % stateList.length;</div><div class="line">  &#125;, <span class="number">2000</span>);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">start(traffic, [<span class="string">"wait"</span>, <span class="string">"stop"</span>, <span class="string">"pass"</span>]);</div></pre></td></tr></table></figure>
+<p>版本三是中规中矩的一版，也是一般我们在工作中比较常用的思路。应该将暴露出来的 API 暴露出来（本例中的 stateList）。将不应该暴露出来的数据或状态隐藏（本例中的 currentStateIndex）。</p>
+<p>有许多同学觉得说写出这一版本来已经很不错的。的确，应该也还不错，但这一版的抽象程度其实也不是很高，或者说，如果考虑适用性，这版已经很好了，但是如果考虑可复用性的话，这版依然有改进空间。</p>
+<p>我们再看一个思路上较有意思的版本。</p>
+<h1 id="版本四-过程抽象"><a href="#版本四-过程抽象" class="headerlink" title="版本四 过程抽象"></a>版本四 过程抽象</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">poll</span>(<span class="params">...fnList</span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> stateIndex = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> fn = fnList[stateIndex++ % fnList.length];</div><div class="line">    <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, args);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setState</span>(<span class="params">state</span>)</span>&#123;</div><div class="line">  traffic.className = state;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> trafficStatePoll = poll(setState.bind(<span class="literal">null</span>, <span class="string">"wait"</span>),</div><div class="line">                            setState.bind(<span class="literal">null</span>, <span class="string">"stop"</span>),</div><div class="line">                            setState.bind(<span class="literal">null</span>, <span class="string">"pass"</span>));</div><div class="line"></div><div class="line">setInterval(trafficStatePoll, <span class="number">2000</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">poll</span>(<span class="params">...fnList</span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> stateIndex = <span class="number">0</span>;</div><div class="line"> </div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> fn = fnList[stateIndex++ % fnList.length];</div><div class="line">    <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, args);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setState</span>(<span class="params">state</span>)</span>&#123;</div><div class="line">  traffic.className = state;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">let</span> trafficStatePoll = poll(setState.bind(<span class="literal">null</span>, <span class="string">"wait"</span>),</div><div class="line">                            setState.bind(<span class="literal">null</span>, <span class="string">"stop"</span>),</div><div class="line">                            setState.bind(<span class="literal">null</span>, <span class="string">"pass"</span>));</div><div class="line"> </div><div class="line">setInterval(trafficStatePoll, <span class="number">2000</span>);</div></pre></td></tr></table></figure>
+<p>这一版用的是过程抽象的思路，而过程抽象，是函数式编程的基础。在这里，我们抽象出了一个 poll(…fnList) 的高阶组合函数，它将一个函数列表组合起来，每次调用时依次轮流执行列表里的函数。</p>
+<p>我们说，程序设计的本质是抽象，而过程抽象是一种与数据抽象对应的思路，它们是两种不同的抽象模型。数据抽象比较基础，而过程抽象相对高级一些，也更灵活一些。数据抽象是研究函数如何操作数据，而过程抽象则在此基础上研究函数如何操作函数。所以说如果把抽象比作数学，那么数据抽象是初等数学，过程抽象则是高等数学。同一个问题，既可以用初等数学来解决，又可以用高等数学来解决。用什么方法解决，取决于问题的模型和难度等等。</p>
+<p>好了，上面我们有了四个版本，那么是否考虑了这些版本就足够了呢？</p>
+<p>并不是。因为需求是会变更的。假设现在需求变化了：</p>
+<p>需求变更：让 wait、stop、pass 状态的持续时长不相等，分别改成 1秒、2秒、3秒。<br><img src="http://jbcdn2.b0.upaiyun.com/2017/01/5356e9d0260caf148eb70627496345d8.jpg" alt=""></p>
+<p>那么，我们发现 ——</p>
+<p>除了版本一之外，版本二、三、四全都跪了……</p>
+<p>那是否意味着我们要回归到版本一呢？</p>
+<p>当然并不是。</p>
+<h1 id="版本五-需求升级"><a href="#版本五-需求升级" class="headerlink" title="版本五 需求升级"></a>版本五 需求升级</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wait</span>(<span class="params">time</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> setTimeout(resolve, time));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setState</span>(<span class="params">state</span>)</span>&#123;</div><div class="line">  traffic.className = state;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">Promise</span>.resolve()</div><div class="line">    .then(setState.bind(<span class="literal">null</span>, <span class="string">"wait"</span>))</div><div class="line">    .then(wait.bind(<span class="literal">null</span>, <span class="number">1000</span>))</div><div class="line">    .then(setState.bind(<span class="literal">null</span>, <span class="string">"stop"</span>))</div><div class="line">    .then(wait.bind(<span class="literal">null</span>, <span class="number">2000</span>))</div><div class="line">    .then(setState.bind(<span class="literal">null</span>, <span class="string">"pass"</span>))</div><div class="line">    .then(wait.bind(<span class="literal">null</span>, <span class="number">3000</span>))</div><div class="line">    .then(reset);</div><div class="line">&#125;</div><div class="line"></div><div class="line">reset();</div><div class="line"></div><div class="line"><span class="keyword">const</span> traffic = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wait</span>(<span class="params">time</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> setTimeout(resolve, time));</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setState</span>(<span class="params">state</span>)</span>&#123;</div><div class="line">  traffic.className = state;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">Promise</span>.resolve()</div><div class="line">    .then(setState.bind(<span class="literal">null</span>, <span class="string">"wait"</span>))</div><div class="line">    .then(wait.bind(<span class="literal">null</span>, <span class="number">1000</span>))</div><div class="line">    .then(setState.bind(<span class="literal">null</span>, <span class="string">"stop"</span>))</div><div class="line">    .then(wait.bind(<span class="literal">null</span>, <span class="number">2000</span>))</div><div class="line">    .then(setState.bind(<span class="literal">null</span>, <span class="string">"pass"</span>))</div><div class="line">    .then(wait.bind(<span class="literal">null</span>, <span class="number">3000</span>))</div><div class="line">    .then(reset);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">reset();</div></pre></td></tr></table></figure>
+<p>版本五的思路是，既然我们需要考虑不同的持续时间，那么我们需要将等待时间抽象出来：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wait</span>(<span class="params">time</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> setTimeout(resolve, time));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wait</span>(<span class="params">time</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> setTimeout(resolve, time));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这一版本里我们用了 Promise 来处理回调问题，当然对 ES6 之前的版本，可以用 shim 或 polyfill、第三方库，也可以选择不用 Promise。</p>
+<p>版本五抽象出的 wait 方法也还比较通用，可以用在其他地方。这是版本五好的一点。</p>
+<h1 id="版本5-1-更加易读"><a href="#版本5-1-更加易读" class="headerlink" title="版本5.1 更加易读"></a>版本5.1 更加易读</h1><p>把Promise改成async和await</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> traffic=<span class="built_in">document</span>.getElementById(<span class="string">'traffic'</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wait</span>(<span class="params">time</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span>=&gt;</span>setTimeout(resolve,time));</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setState</span>(<span class="params">state</span>)</span>&#123;</div><div class="line">	traffic.className=state;</div><div class="line">&#125;</div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncPrint</span>(<span class="params">time1,time2,time3</span>) </span>&#123;</div><div class="line">	setState(<span class="string">'wait'</span>);</div><div class="line">  	<span class="keyword">await</span> wait(time1);</div><div class="line">  setState(<span class="string">'stop'</span>);</div><div class="line">  	<span class="keyword">await</span> wait(time2);</div><div class="line">  setState(<span class="string">'pass'</span>);</div><div class="line">  	<span class="keyword">await</span> wait(time3);</div><div class="line">    asyncPrint(<span class="number">1000</span>, <span class="number">2000</span>,<span class="number">3000</span>);</div><div class="line">&#125;</div><div class="line">asyncPrint(<span class="number">1000</span>, <span class="number">2000</span>,<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<h1 id="版本六-我放大招了"><a href="#版本六-我放大招了" class="headerlink" title="版本六 我放大招了"></a>版本六 我放大招了</h1><p>我们还可以进一步抽象，设计出版本六，或者类似的对象模型：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> trafficEl = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">TrafficProtocol</span>(<span class="params">el, reset</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.subject = el;</div><div class="line">  <span class="keyword">this</span>.autoReset = reset;</div><div class="line">  <span class="keyword">this</span>.stateList = [];</div><div class="line">&#125;</div><div class="line"></div><div class="line">TrafficProtocol.prototype.putState = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.stateList.push(fn);</div><div class="line">&#125;</div><div class="line"></div><div class="line">TrafficProtocol.prototype.reset = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> subject = <span class="keyword">this</span>.subject;</div><div class="line"></div><div class="line">  <span class="keyword">this</span>.statePromise = <span class="built_in">Promise</span>.resolve();</div><div class="line">  <span class="keyword">this</span>.stateList.forEach(<span class="function">(<span class="params">stateFn</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.statePromise = <span class="keyword">this</span>.statePromise.then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</div><div class="line">        stateFn(subject, resolve);</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">this</span>.autoReset)&#123;</div><div class="line">    <span class="keyword">this</span>.statePromise.then(<span class="keyword">this</span>.reset.bind(<span class="keyword">this</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">TrafficProtocol.prototype.start = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.reset();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> traffic = <span class="keyword">new</span> TrafficProtocol(trafficEl, <span class="literal">true</span>);</div><div class="line"></div><div class="line">traffic.putState(<span class="function"><span class="keyword">function</span>(<span class="params">subject, next</span>)</span>&#123;</div><div class="line">  subject.className = <span class="string">"wait"</span>;</div><div class="line">  setTimeout(next, <span class="number">1000</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">traffic.putState(<span class="function"><span class="keyword">function</span>(<span class="params">subject, next</span>)</span>&#123;</div><div class="line">  subject.className = <span class="string">"stop"</span>;</div><div class="line">  setTimeout(next, <span class="number">2000</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">traffic.putState(<span class="function"><span class="keyword">function</span>(<span class="params">subject, next</span>)</span>&#123;</div><div class="line">  subject.className = <span class="string">"pass"</span>;</div><div class="line">  setTimeout(next, <span class="number">3000</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">traffic.start();</div><div class="line"><span class="keyword">const</span> trafficEl = <span class="built_in">document</span>.getElementById(<span class="string">"traffic"</span>);</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">TrafficProtocol</span>(<span class="params">el, reset</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.subject = el;</div><div class="line">  <span class="keyword">this</span>.autoReset = reset;</div><div class="line">  <span class="keyword">this</span>.stateList = [];</div><div class="line">&#125;</div><div class="line"> </div><div class="line">TrafficProtocol.prototype.putState = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.stateList.push(fn);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">TrafficProtocol.prototype.reset = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> subject = <span class="keyword">this</span>.subject;</div><div class="line"> </div><div class="line">  <span class="keyword">this</span>.statePromise = <span class="built_in">Promise</span>.resolve();</div><div class="line">  <span class="keyword">this</span>.stateList.forEach(<span class="function">(<span class="params">stateFn</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.statePromise = <span class="keyword">this</span>.statePromise.then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</div><div class="line">        stateFn(subject, resolve);</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">this</span>.autoReset)&#123;</div><div class="line">    <span class="keyword">this</span>.statePromise.then(<span class="keyword">this</span>.reset.bind(<span class="keyword">this</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">TrafficProtocol.prototype.start = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.reset();</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">var</span> traffic = <span class="keyword">new</span> TrafficProtocol(trafficEl, <span class="literal">true</span>);</div><div class="line"> </div><div class="line">traffic.putState(<span class="function"><span class="keyword">function</span>(<span class="params">subject, next</span>)</span>&#123;</div><div class="line">  subject.className = <span class="string">"wait"</span>;</div><div class="line">  setTimeout(next, <span class="number">1000</span>);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">traffic.putState(<span class="function"><span class="keyword">function</span>(<span class="params">subject, next</span>)</span>&#123;</div><div class="line">  subject.className = <span class="string">"stop"</span>;</div><div class="line">  setTimeout(next, <span class="number">2000</span>);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">traffic.putState(<span class="function"><span class="keyword">function</span>(<span class="params">subject, next</span>)</span>&#123;</div><div class="line">  subject.className = <span class="string">"pass"</span>;</div><div class="line">  setTimeout(next, <span class="number">3000</span>);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">traffic.start();</div></pre></td></tr></table></figure>
+<p>这一版本里，我们设计了一个 TrafficProtocol 类，它有 putState、reset、start 三个方法：</p>
+<p>putState 接受一个函数作为参数，这个函数自身有两个参数，一个是 subject，是由 TrafficProtocol 对象初始化时设定的 DOM 元素，一个是 next，是一个函数，表示结束当前 state，进入下一个 state。<br>reset 结束当前状态循环，开始新的循环。<br>start 开始执行循环，这里的实现是直接调用 reset。<br>看一下 reset 的实现思路：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">TrafficProtocol.prototype.reset = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> subject = <span class="keyword">this</span>.subject;</div><div class="line"></div><div class="line">  <span class="keyword">this</span>.statePromise = <span class="built_in">Promise</span>.resolve();</div><div class="line">  <span class="keyword">this</span>.stateList.forEach(<span class="function">(<span class="params">stateFn</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.statePromise = <span class="keyword">this</span>.statePromise.then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</div><div class="line">        stateFn(subject, resolve);</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">this</span>.autoReset)&#123;</div><div class="line">    <span class="keyword">this</span>.statePromise.then(<span class="keyword">this</span>.reset.bind(<span class="keyword">this</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">TrafficProtocol.prototype.reset = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> subject = <span class="keyword">this</span>.subject;</div><div class="line"> </div><div class="line">  <span class="keyword">this</span>.statePromise = <span class="built_in">Promise</span>.resolve();</div><div class="line">  <span class="keyword">this</span>.stateList.forEach(<span class="function">(<span class="params">stateFn</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.statePromise = <span class="keyword">this</span>.statePromise.then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</div><div class="line">        stateFn(subject, resolve);</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">this</span>.autoReset)&#123;</div><div class="line">    <span class="keyword">this</span>.statePromise.then(<span class="keyword">this</span>.reset.bind(<span class="keyword">this</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这里我们创建一个 statePromise，然后将 stateList 中的方法（通过 putState 添加的）依次绑定到 promise 上。如果设置了 autoReset，那么我们在 promise 的最后绑定 reset 自身，这样就实现了循环切换。</p>
+<p>有了这个模型，我们要添加新的状态，只需要通过 putState 添加一个新的状态就好了。这一模型不仅仅可以用在这个需求里，还可以用在任何需要顺序执行异步请求的地方。</p>
+<p>最后，我们看到，版本六用到了面向对象、过程抽象、Promise等模式，它的优点是 API 设计灵活，通用性和扩展性好。但是版本六也有缺点，它的实现复杂度比前面的几个版本都高，我们在做这样的设计时，也需要考虑是否有过度设计的嫌疑。<br><a href="https://jsfiddle.net/dsb123dsb/02fzwe4z/6/" target="_blank" rel="external">代码地址</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>设计是把双刃剑，繁简需要权衡，尺度需要把握。</li>
+<li>写代码简单，程序设计不易，需要走心。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://oci0xa33t.qnssl.com/%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E7%A0%81.png" alt="qijiIng WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://oci0xa33t.qnssl.com/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E6%AC%BE%E7%A0%81.jpg" alt="qijiIng Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+            <a href="/tags/ES6/" rel="tag">#ES6</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/27/js实现快速排序（in-place）简述/" rel="next" title="js实现快速排序（in-place）简述">
+                <i class="fa fa-chevron-left"></i> js实现快速排序（in-place）简述
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/14/ES5和ES6中的继承/" rel="prev" title="ES5和ES6中的继承">
+                ES5和ES6中的继承 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/01/06/学习笔记：如何写出好的Javascript-浅谈API设计/"
+     data-title="如何写出好的Javascript-浅谈API设计"
+     data-content=""
+     data-url="https://dsb123dsb.github.io/2017/01/06/学习笔记：如何写出好的Javascript-浅谈API设计/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/06/学习笔记：如何写出好的Javascript-浅谈API设计/"
+           data-title="如何写出好的Javascript-浅谈API设计" data-url="https://dsb123dsb.github.io/2017/01/06/学习笔记：如何写出好的Javascript-浅谈API设计/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="qijiIng" />
+          <p class="site-author-name" itemprop="name">qijiIng</p>
+          <p class="site-description motion-element" itemprop="description">xxNet不知者无畏</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/dsb123dsb" target="_blank" title="gitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  gitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2737928701/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/zhou-yong-hui-1-79" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/dsb123dsb" target="_blank" title="twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.cethik.vip/" title="flyfish" target="_blank">flyfish</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#看一个简单的例子："><span class="nav-number">1.</span> <span class="nav-text">看一个简单的例子：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对应的-HTML-和-CSS-如下："><span class="nav-number">1.1.</span> <span class="nav-text">对应的 HTML 和 CSS 如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本一-定时器嵌套"><span class="nav-number">2.</span> <span class="nav-text">版本一 定时器嵌套</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本二-数据抽象"><span class="nav-number">3.</span> <span class="nav-text">版本二 数据抽象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本三-良好封装"><span class="nav-number">4.</span> <span class="nav-text">版本三 良好封装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本四-过程抽象"><span class="nav-number">5.</span> <span class="nav-text">版本四 过程抽象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本五-需求升级"><span class="nav-number">6.</span> <span class="nav-text">版本五 需求升级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本5-1-更加易读"><span class="nav-number">7.</span> <span class="nav-text">版本5.1 更加易读</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本六-我放大招了"><span class="nav-number">8.</span> <span class="nav-text">版本六 我放大招了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qijiIng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user">本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye">本站总访问量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xxxxxx123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("6Q7lI0M9c86x08JBJXNkY3NG-gzGzoHsz", "qQ5n6b9g46wevCSnOV6KD9HX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>
