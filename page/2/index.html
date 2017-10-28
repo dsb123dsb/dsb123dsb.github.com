@@ -294,6 +294,146 @@
             
               
                 
+                <a class="post-title-link" href="/2017/05/02/JavaScript监听全部Ajax请求事件的方法/" itemprop="url">
+                  JavaScript监听全部Ajax请求事件的方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-02T15:34:59+08:00" content="2017-05-02">
+              2017-05-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术分享/" itemprop="url" rel="index">
+                    <span itemprop="name">技术分享</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/02/JavaScript监听全部Ajax请求事件的方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/02/JavaScript监听全部Ajax请求事件的方法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/05/02/JavaScript监听全部Ajax请求事件的方法/" class="leancloud_visitors" data-flag-title="JavaScript监听全部Ajax请求事件的方法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前段时间做阿里暑期实习笔试题目，抽到的试题最后一道要求写个组件监听页面所有ajax请求，当时大概能猜到要改写XMLHttpReuqest对象，不过最后还是没写出来，回来查了下资料：</p>
+<ol>
+<li>若Ajax请求是由jQuery的$.ajax发起的，默认情况下可以使用 jQuery的Global Ajax Event Handlers监听到Ajax事件，</li>
+<li>然而我遇到的却是用原生JavaScript发起的Ajax请求，所以这种方法行不通。</li>
+<li>还有其他方法，比如说 Pub/Sub，但是这个发起请求的 js 代码我是无法改动的，也就不存在向代码里添加 publish 的问题。同理，jQuery 的 .bind 和 .trigger 也无法使用。</li>
+</ol>
+<p>最后的方案：实现主要是两点：<code>**override XMLHttpRequest**</code>和<strong>自定义事件</strong>（这一块红宝书有讲，也看过，并没有重视，自己没有好好钻研，怨不得别人）<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/05/02/JavaScript监听全部Ajax请求事件的方法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/30/如何用原生-JS-实现手势解锁组件/" itemprop="url">
                   如何用原生 JS 实现手势解锁组件
                 </a>
@@ -1519,141 +1659,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/学习笔记-高性能JavaScript/" itemprop="url">
-                  学习笔记-高性能JavaScript
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-18T21:06:02+08:00" content="2017-02-18">
-              2017-02-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/18/学习笔记-高性能JavaScript/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/18/学习笔记-高性能JavaScript/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/02/18/学习笔记-高性能JavaScript/" class="leancloud_visitors" data-flag-title="学习笔记-高性能JavaScript">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>纸上得来终觉浅，绝知此事要躬行</p>
-</blockquote>
-<p>两天把买的很久的《高性能JavaScript》看完了，失败果然是催人奋进最好良药，如果早些研究这本书，我想猪场面试也能表现更好吧，虽然一直在学习，并没有付出哪怕60%的全部努力，不能等到机会来了才知道要好好努力，说了这么多给自己听的题外话，正题：把书中优化js性能的方法略作总结（写完最后看了一下竟然将近一万六千字，mark下，<em>纯手工 打造，哈哈</em>）。</p>
-<h1 id="加载和执行"><a href="#加载和执行" class="headerlink" title="加载和执行"></a>加载和执行</h1><p>多数浏览器使用单一进程来处理用户界面（UI）刷新和Javascript脚本执行，所以同一时刻只能做一件事情-javaScript的阻塞特性，javaScript执行过程好事越久，浏览器等待响应时间越长。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/18/学习笔记-高性能JavaScript/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1699,7 +1704,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">47</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1716,7 +1721,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
