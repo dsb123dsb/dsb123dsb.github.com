@@ -20,7 +20,7 @@
 <a id="more"></a>
 <h2 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h2><p>多路复用，代替原来的序列和阻塞机制。所有的请求都是通过==一个TCP==连接并发完成。</p>
 <p>http1.x中，如果想并发多个请求，必须使用多个tcp连接，并且浏览器为了控制资源，还会对单个域名有6-8个数限制，如下图，红色圈出来的请求就因域名链接数超过限制，而被挂起等待了一段时间：</p>
-<p><img src="" alt="http://blog.upyun.com/wp-content/uploads/2017/03/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.png"></p>
+<p><img src="http://blog.upyun.com/wp-content/uploads/2017/03/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.png" alt=""></p>
 <p>在http2.0中，有了二进制分帧后，就不再依赖TCP连接去实现多流并行了：</p>
 <ul>
 <li>同域名下所用通信都在单个连接上完成</li>

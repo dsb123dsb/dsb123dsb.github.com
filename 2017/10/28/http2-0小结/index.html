@@ -94,10 +94,12 @@
 <meta property="og:site_name" content="XX雨中人">
 <meta property="og:description" content="纸上得来终觉浅，觉知此事要躬行  前言如今，http1.1是互联网中的主要协议，随着web技术的飞速发展，http1.1已经无法满足用户对性能的要求，此后谷歌推出SPDY,意在解决http1.1中广为人知的性能问题，其在被行业采用并证明能够大幅提升性能后，已经具备了成为一个标准的条件。 Http2.0是http协议自1999年http1.1发布后的首个更新，主要基于SPDY协议，於2015年正式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-28T06:09:26.000Z">
+<meta property="og:image" content="http://blog.upyun.com/wp-content/uploads/2017/03/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.png">
+<meta property="og:updated_time" content="2017-10-28T06:15:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http2.0小结">
 <meta name="twitter:description" content="纸上得来终觉浅，觉知此事要躬行  前言如今，http1.1是互联网中的主要协议，随着web技术的飞速发展，http1.1已经无法满足用户对性能的要求，此后谷歌推出SPDY,意在解决http1.1中广为人知的性能问题，其在被行业采用并证明能够大幅提升性能后，已经具备了成为一个标准的条件。 Http2.0是http协议自1999年http1.1发布后的首个更新，主要基于SPDY协议，於2015年正式">
+<meta name="twitter:image" content="http://blog.upyun.com/wp-content/uploads/2017/03/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.png">
 
 
 
@@ -382,7 +384,7 @@
 <a id="more"></a>
 <h2 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h2><p>多路复用，代替原来的序列和阻塞机制。所有的请求都是通过==一个TCP==连接并发完成。</p>
 <p>http1.x中，如果想并发多个请求，必须使用多个tcp连接，并且浏览器为了控制资源，还会对单个域名有6-8个数限制，如下图，红色圈出来的请求就因域名链接数超过限制，而被挂起等待了一段时间：</p>
-<p><img src="" alt="http://blog.upyun.com/wp-content/uploads/2017/03/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.png"></p>
+<p><img src="http://blog.upyun.com/wp-content/uploads/2017/03/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.png" alt=""></p>
 <p>在http2.0中，有了二进制分帧后，就不再依赖TCP连接去实现多流并行了：</p>
 <ul>
 <li>同域名下所用通信都在单个连接上完成</li>
