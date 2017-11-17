@@ -10,7 +10,7 @@
 <p>纸上得来终觉浅，绝知此事要躬行</p>
 </blockquote>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看完css揭秘，对表现和结构分离的理解更加深刻，之前写样式只求能做出来，对于结构有多复杂，代码有多冗余，并没有太多考虑，或者心有余而力不足，之前也没有真正认真进阶学习过css，读完此书，css magical不虚此名。</p>
-<h2 id="偷师技巧一二"><a href="#偷师技巧一二" class="headerlink" title="偷师技巧一二"></a>偷师技巧一二</h2><p>个人总结了下，让css变得如魔法一般的有以下几个：</p>
+<h1 id="偷师技巧一二"><a href="#偷师技巧一二" class="headerlink" title="偷师技巧一二"></a>偷师技巧一二</h1><p>个人总结了下，让css变得如魔法一般的有以下几个：</p>
 <ol>
 <li><p>巧用渐变</p>
 </li>
@@ -36,7 +36,7 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">keyframes</span> typing &#123;</div><div class="line">    <span class="selector-tag">from</span> &#123; <span class="attribute">width</span>: <span class="number">0</span> &#125;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> caret &#123;</div><div class="line">    50% &#123; <span class="attribute">border-color</span>: transparent; &#125;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">h1</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">15ch</span>; <span class="comment">/* 文本的宽度 可能有兼容问题，可设置固定来优雅回退*/</span></div><div class="line">    <span class="attribute">overflow</span>: hidden;</div><div class="line">    <span class="attribute">white-space</span>: nowrap;</div><div class="line">    <span class="attribute">border-right</span>: .<span class="number">05em</span> solid;</div><div class="line">    <span class="attribute">animation</span>: typing <span class="number">6s</span> <span class="built_in">steps</span>(15),</div><div class="line">    caret <span class="number">1s</span> <span class="built_in">steps</span>(1) infinite;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//js</span></div><div class="line">$$(<span class="string">'h1'</span>).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">h1</span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> len = h1.textContent.length, s = h1.style;</div><div class="line">s.width = len + <span class="string">'ch'</span>;</div><div class="line">s.animationTimingFunction = <span class="string">"steps("</span>+len+<span class="string">"),steps(1)"</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello awesome css<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>对css越来越感兴趣，前端的三把利器真是样样都要行，之前很厌烦来回调样式，说到底还是没有好好学习，功夫到了很多样式往往几行代码就能产生魔法般的效果，fighting！！！！！</p>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>对css越来越感兴趣，前端的三把利器真是样样都要行，之前很厌烦来回调样式，说到底还是没有好好学习，功夫到了很多样式往往几行代码就能产生魔法般的效果，fighting！！！！！</p>
 ]]></content>
       
         
@@ -1600,9 +1600,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> ES6 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> ES6 </tag>
             
         </tags>
         
@@ -1634,9 +1634,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> 继承 </tag>
-            
             <tag> ES6 </tag>
+            
+            <tag> 继承 </tag>
             
         </tags>
         
@@ -3057,9 +3057,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> html5 </tag>
-            
             <tag> js </tag>
+            
+            <tag> html5 </tag>
             
             <tag> &lt;font color=#00ff face=&quot;黑体&quot;size=4&gt;小游戏&lt;/font&gt; </tag>
             
