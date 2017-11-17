@@ -294,6 +294,138 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/05/学习笔记-Symbol数据类型/" itemprop="url">
+                  学习笔记-Symbol数据类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-05T14:50:01+08:00" content="2017-03-05">
+              2017-03-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">基础杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/05/学习笔记-Symbol数据类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/学习笔记-Symbol数据类型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/05/学习笔记-Symbol数据类型/" class="leancloud_visitors" data-flag-title="学习笔记-Symbol数据类型">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>ES5的对象属性名都是字符串，这容易造成属性名的冲突。ES6引入了一种新的原始数据类型Symbol，表示独一无二的值。它是JavaScript语言的第七种数据类型，前六种:Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。<br>1.Symbol值可以通过<code>Symbol</code>函数生成。既对象的属性名可以有两种类型：原来的字符串、新增的Symbol类型，后者是独一无二的，保证不会与其它属性名产生冲突。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> s=<span class="built_in">Symbol</span>();	</div><div class="line"><span class="keyword">typeof</span> s<span class="comment">//"Symbol"</span></div></pre></td></tr></table></figure></p>
+<p>2.值得注意的是<code>Symbol</code>函数前不能使用<code>new</code>命令，否则会报错。因为生成的Symbol是一个原始数据类型的值，不是对象。也就是说由于Symbol不是对象，所以不能添加属性。<br>3.<code>Symbol</code>函数可以接受一个字符串作为参数，表示对<code>Symbol</code>实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s1=<span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</div><div class="line"><span class="keyword">var</span> s2=<span class="built_in">Symbol</span>(<span class="string">'bar'</span>);</div><div class="line">s1<span class="comment">//Symbol(foo)</span></div><div class="line">s2<span class="comment">//Symbol(bar)</span></div><div class="line">s1.toString()<span class="comment">//"Symbol(foo)"</span></div><div class="line">s2.toString()<span class="comment">//"Symbol(bar)"</span></div></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/05/学习笔记-Symbol数据类型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/18/学习笔记-高性能JavaScript/" itemprop="url">
                   学习笔记-高性能JavaScript
                 </a>
@@ -1487,138 +1619,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/15/学习笔记-快速取整/" itemprop="url">
-                  学习笔记-快速取整
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T12:07:24+08:00" content="2016-11-15">
-              2016-11-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">基础杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/15/学习笔记-快速取整/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/15/学习笔记-快速取整/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/11/15/学习笔记-快速取整/" class="leancloud_visitors" data-flag-title="学习笔记-快速取整">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="每1s向-1-2-3-4-5-前面添加一个不重复的随机数，数组长度达到10结束"><a href="#每1s向-1-2-3-4-5-前面添加一个不重复的随机数，数组长度达到10结束" class="headerlink" title="每1s向[1,2,3,4,5]前面添加一个不重复的随机数，数组长度达到10结束"></a>每1s向[1,2,3,4,5]前面添加一个不重复的随机数，数组长度达到10结束</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> aa = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">   <span class="keyword">var</span> timer = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="keyword">var</span> random = <span class="built_in">Math</span>.random()*<span class="number">100</span>+<span class="number">1</span>|<span class="number">0</span>;<span class="comment">//快速取整</span></div><div class="line">       <span class="keyword">while</span> (aa.indexOf(random)&gt;<span class="number">-1</span>)&#123;</div><div class="line">           random = <span class="built_in">Math</span>.random()*<span class="number">100</span>+<span class="number">1</span>|<span class="number">0</span>;</div><div class="line">       &#125;</div><div class="line">       aa.unshift(random);</div><div class="line">       <span class="keyword">if</span>(aa.length==<span class="number">10</span>)clearInterval(timer);</div><div class="line">       <span class="built_in">console</span>.log(aa);</div><div class="line">   &#125;,<span class="number">1000</span>);</div></pre></td></tr></table></figure>
-<h1 id="位运算快速取整"><a href="#位运算快速取整" class="headerlink" title="位运算快速取整"></a>位运算快速取整</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.time(<span class="string">'计时器'</span>)</div><div class="line">		<span class="built_in">parseInt</span>(<span class="number">12222.22222</span>);</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'计时器'</span>);</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'计时器'</span>)</div><div class="line">		<span class="number">12222.22222</span>|<span class="number">0</span>;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'计时器'</span>);</div><div class="line">	<span class="built_in">console</span>.time(<span class="string">'计时器'</span>)</div><div class="line">		~~<span class="number">12222.22222</span>;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'计时器'</span>);</div><div class="line"><span class="comment">//计时器: 0.021ms</span></div><div class="line"><span class="comment">//计时器: 0.019ms</span></div><div class="line"><span class="comment">//计时器: 0.00781ms</span></div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/15/学习笔记-快速取整/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1664,7 +1664,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
