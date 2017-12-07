@@ -1297,9 +1297,9 @@ brew install flow
         
         <tags>
             
-            <tag> 学习笔记 </tag>
-            
             <tag> Symbol </tag>
+            
+            <tag> 学习笔记 </tag>
             
         </tags>
         
@@ -1600,9 +1600,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> 学习笔记 </tag>
-            
             <tag> ES6 </tag>
+            
+            <tag> 学习笔记 </tag>
             
         </tags>
         
@@ -3057,9 +3057,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> js </tag>
-            
             <tag> html5 </tag>
+            
+            <tag> js </tag>
             
             <tag> &lt;font color=#00ff face=&quot;黑体&quot;size=4&gt;小游戏&lt;/font&gt; </tag>
             
