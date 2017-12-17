@@ -294,6 +294,143 @@
             
               
                 
+                <a class="post-title-link" href="/2017/05/25/Vue2-17源码学习/" itemprop="url">
+                  Vue2.17源码学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-25T22:00:39+08:00" content="2017-05-25">
+              2017-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">基础杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/25/Vue2-17源码学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/25/Vue2-17源码学习/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/05/25/Vue2-17源码学习/" class="leancloud_visitors" data-flag-title="Vue2.17源码学习">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>纸上得来终觉浅，绝知此事要躬</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前段时间看到尤雨溪推荐了一篇vue源码的文章，自己一直也想研究下源码，这几天抽空看了，<a href="http://hcysun.me/2017/03/03/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" target="_blank" rel="external">原文猛戳</a></p>
+<p>原本文章的名字叫做《源码解析》，不过后来想想，还是用“源码学习”来的合适一点，在没有彻底掌握源码中的每一个字母之前，“解析”就有点标题党了。建议在看这篇文章之前，最好打开<code>2.1.7</code>的源码对照着看，这样可能更容易理解。另外本人水平有限，文中有错误或不妥的地方望大家多多指正共同成长。</p>
+<p>补充：<code>Vue 2.2</code> 刚刚发布，作为一个系列文章的第一篇，本篇文章主要从Vue代码的组织，Vue构造函数的还原，原型的设计，以及参数选项的处理和已经被写烂了的数据绑定与如何使用 Virtual DOM 更新视图入手。从整体的大方向观察框架，这么看来 <code>V2.1.7</code> 对于理解 <code>V2.2</code>的代码不会有太大的影响。该系列文章的后续文章，都会从最新的源码入手，并对改动的地方做相应的提示。</p>
+<p>很久之前写过一篇文章：<a href="http://hcysun.me/2016/04/28/JavaScript%E5%AE%9E%E7%8E%B0MVVM%E4%B9%8B%E6%88%91%E5%B0%B1%E6%98%AF%E6%83%B3%E7%9B%91%E6%B5%8B%E4%B8%80%E4%B8%AA%E6%99%AE%E9%80%9A%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8F%98%E5%8C%96/" target="_blank" rel="external">JavaScript实现MVVM之我就是想监测一个普通对象的变化</a>，文章开头提到了我写博客的风格，还是那句话，只写努力让小白，甚至是小学生都能看明白的文章。这不免会导致对于某些同学来说这篇文章有些墨迹，所以大家根据自己的喜好，可以详细的看，也可以跳跃着看。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/05/25/Vue2-17源码学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/05/04/CSS-Grid布局浅谈/" itemprop="url">
                   CSS Grid布局浅谈
                 </a>
@@ -1531,141 +1668,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/js实现冒泡排序以及优化/" itemprop="url">
-                  js实现冒泡排序以及优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-07T20:17:48+08:00" content="2017-03-07">
-              2017-03-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">基础杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/07/js实现冒泡排序以及优化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/07/js实现冒泡排序以及优化/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/03/07/js实现冒泡排序以及优化/" class="leancloud_visitors" data-flag-title="js实现冒泡排序以及优化">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>纸上得来终觉浅，绝知此事要躬行</p>
-</blockquote>
-<h1 id="基本思想："><a href="#基本思想：" class="headerlink" title="基本思想："></a>基本思想：</h1><p>在要排序的一组数中，对当前还未排好序的范围内的全部数，自上而下对相邻的两个数依次进行比较和调整，让较大的数往下沉，较小的往上冒。即：每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。</p>
-<h1 id="算法的实现："><a href="#算法的实现：" class="headerlink" title="算法的实现："></a>算法的实现：</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//冒泡排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> len=arr.length;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;len-i<span class="number">-1</span>;j++)&#123;</div><div class="line">			<span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</div><div class="line">			<span class="keyword">var</span> tmp=arr[j];arr[j]=arr[j+<span class="number">1</span>];arr[j+<span class="number">1</span>]=tmp;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> arr;</div><div class="line">&#125;</div><div class="line">bubbleSort([<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">92</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">111</span>,<span class="number">1</span>,<span class="number">9</span>])</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/07/js实现冒泡排序以及优化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1711,7 +1713,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1728,7 +1730,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

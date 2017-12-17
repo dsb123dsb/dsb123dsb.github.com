@@ -294,6 +294,141 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/07/js实现冒泡排序以及优化/" itemprop="url">
+                  js实现冒泡排序以及优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-07T20:17:48+08:00" content="2017-03-07">
+              2017-03-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">基础杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/07/js实现冒泡排序以及优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/07/js实现冒泡排序以及优化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/07/js实现冒泡排序以及优化/" class="leancloud_visitors" data-flag-title="js实现冒泡排序以及优化">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<h1 id="基本思想："><a href="#基本思想：" class="headerlink" title="基本思想："></a>基本思想：</h1><p>在要排序的一组数中，对当前还未排好序的范围内的全部数，自上而下对相邻的两个数依次进行比较和调整，让较大的数往下沉，较小的往上冒。即：每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。</p>
+<h1 id="算法的实现："><a href="#算法的实现：" class="headerlink" title="算法的实现："></a>算法的实现：</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//冒泡排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> len=arr.length;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;len-i<span class="number">-1</span>;j++)&#123;</div><div class="line">			<span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</div><div class="line">			<span class="keyword">var</span> tmp=arr[j];arr[j]=arr[j+<span class="number">1</span>];arr[j+<span class="number">1</span>]=tmp;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> arr;</div><div class="line">&#125;</div><div class="line">bubbleSort([<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">92</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">111</span>,<span class="number">1</span>,<span class="number">9</span>])</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/07/js实现冒泡排序以及优化/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/05/学习笔记-Symbol数据类型/" itemprop="url">
                   学习笔记-Symbol数据类型
                 </a>
@@ -1487,138 +1622,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/28/一周有感/" itemprop="url">
-                  一周有感
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-28T22:49:25+08:00" content="2016-11-28">
-              2016-11-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">生活随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/28/一周有感/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/28/一周有感/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/11/28/一周有感/" class="leancloud_visitors" data-flag-title="一周有感">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>一周有感！</p>
-</blockquote>
-<p>&emsp;&emsp;经历了杭城最剧烈的降温，也忍受了感觉最漫长的口腔溃疡，错过了杭研院做RN的实习，鬼使神差的来到创业公司开发小程序，去学习最匮乏基础知识的时间也变得很少，也不能去刷题，感觉冥冥之中自有定数。<br>&emsp;&emsp;旁边坐的是位树莓的本科学妹，每天最早来最晚归让我自愧不如，写代码的妹子让人肃然起敬。<br>&emsp;&emsp;还有中文，金融，设计等等各个专业的妹子，让浸淫理工科多年的已不知风情为何物的，经受春风般的洗涤！<br>&emsp;&emsp;虽然公司的命运和我这个为了学习技术的搬砖工并不无大关系，也不知道自己能呆多久，还是祝愿这么个小而全的公司，安然度过这个资本寒冬，涅槃重生！<br>&emsp;&emsp;最后:这一周技术的那点事！还是那句话纸上得来终觉浅，绝知此事要躬行，看书都能看懂。写起来真是错误才出，还是佩服身边的树莓妹子，还要吐槽下微信的ide,简直低效的代名词。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1664,7 +1667,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1681,7 +1684,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
