@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title><![CDATA[北漂初感]]></title>
+      <url>https://dsb123dsb.github.io/2018/04/15/%E5%8C%97%E6%BC%82%E5%88%9D%E6%84%9F/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<p>转眼来北京四天了，过了第一个周末，也渐渐重新适应北方的气候，变成了原来自己眼里有些傻傻的戴口罩的匆匆行人，作为北方出生的汉纸在南方呆了几年竞变得不适应自己土生土长的北方土地，内心难免产生些许情绪。行走在北京校园的街头，看着遍地的杨树，在这个最好的季节，仿佛梦回幼时的家乡，原来我的内心深处一直对故乡的一切有着深深的眷恋，一点点相似的物事便已暴露，几年江南烟雨的温柔婉约也不能将之改变。</p>
+<p>工作上第一次进入这么大的前端组，充满兴奋和忐忑，周五分享会想也了解到组内的一些业务和技术情况，有些业务技术虽然很老，但也看到组内积极想新技术转变的决心和努力，希望自己能够在这个过程获得成长和作出贡献。这里的也充满挑战，linux开发流程，偏后端知识的学习（ngnix，java），vue，微信小程序等等，有挑战才有进步，加油，期待两年后的自己。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 生活随笔 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 北漂 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[原生WebGL小试牛刀]]></title>
       <url>https://dsb123dsb.github.io/2018/01/09/%E5%8E%9F%E7%94%9FWebGL%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -1737,9 +1762,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> ES6 </tag>
-            
             <tag> 继承 </tag>
+            
+            <tag> ES6 </tag>
             
         </tags>
         
