@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="北漂," />
+  <meta name="keywords" content="工程化," />
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="纸上得来终觉浅，绝知此事要躬行  转眼来北京四天了，过了第一个周末，也渐渐重新适应北方的气候，变成了原来自己眼里有些傻傻的戴口罩的匆匆行人，作为北方出生的汉纸在南方呆了几年竞变得不适应自己土生土长的北方土地，内心难免产生些许情绪。行走在北京校园的街头，看着遍地的杨树，在这个最好的季节，仿佛梦回幼时的家乡，原来我的内心深处一直对故乡的一切有着深深的眷恋，一点点相似的物事便已暴露，几年江南烟雨的温柔">
-<meta name="keywords" content="北漂">
+<meta name="description" content="纸上得来终终觉浅，绝知此事要躬行  前言前几天给项目代码加eslint，并且使用lint-staged和husky在pre-commit阶段做代码检查，也踩了个坑，这里对这两个npm包作简要介绍。 为什么使用通常项目中我们通过eslint和stylelint这些lint工具来检查代码的规范与否，保证良好的代码规范，从而在多人协作中保障项目质量和可维护性。正常我们会在提交代码前手动执行语法检查，而">
+<meta name="keywords" content="工程化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="北漂初感">
-<meta property="og:url" content="https://dsb123dsb.github.io/2018/04/15/北漂初感/index.html">
+<meta property="og:title" content="lint-staged和husky在pre-commit阶段做代码检查">
+<meta property="og:url" content="https://dsb123dsb.github.io/2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/index.html">
 <meta property="og:site_name" content="XX雨中人">
-<meta property="og:description" content="纸上得来终觉浅，绝知此事要躬行  转眼来北京四天了，过了第一个周末，也渐渐重新适应北方的气候，变成了原来自己眼里有些傻傻的戴口罩的匆匆行人，作为北方出生的汉纸在南方呆了几年竞变得不适应自己土生土长的北方土地，内心难免产生些许情绪。行走在北京校园的街头，看着遍地的杨树，在这个最好的季节，仿佛梦回幼时的家乡，原来我的内心深处一直对故乡的一切有着深深的眷恋，一点点相似的物事便已暴露，几年江南烟雨的温柔">
+<meta property="og:description" content="纸上得来终终觉浅，绝知此事要躬行  前言前几天给项目代码加eslint，并且使用lint-staged和husky在pre-commit阶段做代码检查，也踩了个坑，这里对这两个npm包作简要介绍。 为什么使用通常项目中我们通过eslint和stylelint这些lint工具来检查代码的规范与否，保证良好的代码规范，从而在多人协作中保障项目质量和可维护性。正常我们会在提交代码前手动执行语法检查，而">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-15T12:52:23.217Z">
+<meta property="og:updated_time" content="2018-05-26T02:49:16.212Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="北漂初感">
-<meta name="twitter:description" content="纸上得来终觉浅，绝知此事要躬行  转眼来北京四天了，过了第一个周末，也渐渐重新适应北方的气候，变成了原来自己眼里有些傻傻的戴口罩的匆匆行人，作为北方出生的汉纸在南方呆了几年竞变得不适应自己土生土长的北方土地，内心难免产生些许情绪。行走在北京校园的街头，看着遍地的杨树，在这个最好的季节，仿佛梦回幼时的家乡，原来我的内心深处一直对故乡的一切有着深深的眷恋，一点点相似的物事便已暴露，几年江南烟雨的温柔">
+<meta name="twitter:title" content="lint-staged和husky在pre-commit阶段做代码检查">
+<meta name="twitter:description" content="纸上得来终终觉浅，绝知此事要躬行  前言前几天给项目代码加eslint，并且使用lint-staged和husky在pre-commit阶段做代码检查，也踩了个坑，这里对这两个npm包作简要介绍。 为什么使用通常项目中我们通过eslint和stylelint这些lint工具来检查代码的规范与否，保证良好的代码规范，从而在多人协作中保障项目质量和可维护性。正常我们会在提交代码前手动执行语法检查，而">
 
 
 
@@ -118,9 +118,9 @@
 
 
 
-  <link rel="canonical" href="https://dsb123dsb.github.io/2018/04/15/北漂初感/"/>
+  <link rel="canonical" href="https://dsb123dsb.github.io/2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/"/>
 
-  <title> 北漂初感 | XX雨中人 </title>
+  <title> lint-staged和husky在pre-commit阶段做代码检查 | XX雨中人 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +293,7 @@
             
             
               
-                北漂初感
+                lint-staged和husky在pre-commit阶段做代码检查
               
             
           </h1>
@@ -305,8 +305,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-04-15T20:09:55+08:00" content="2018-04-15">
-              2018-04-15
+            <time itemprop="dateCreated" datetime="2018-05-26T09:49:24+08:00" content="2018-05-26">
+              2018-05-26
             </time>
           </span>
 
@@ -319,8 +319,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">生活随笔</span>
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
                   </a>
                 </span>
 
@@ -335,8 +335,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2018/04/15/北漂初感/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/15/北漂初感/" itemprop="commentsCount"></span>
+                <a href="/2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -346,7 +346,7 @@
 
           
           
-             <span id="/2018/04/15/北漂初感/" class="leancloud_visitors" data-flag-title="北漂初感">
+             <span id="/2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/" class="leancloud_visitors" data-flag-title="lint-staged和husky在pre-commit阶段做代码检查">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -369,10 +369,17 @@
 
       
         <blockquote>
-<p>纸上得来终觉浅，绝知此事要躬行</p>
+<p>纸上得来终终觉浅，绝知此事要躬行</p>
 </blockquote>
-<p>转眼来北京四天了，过了第一个周末，也渐渐重新适应北方的气候，变成了原来自己眼里有些傻傻的戴口罩的匆匆行人，作为北方出生的汉纸在南方呆了几年竞变得不适应自己土生土长的北方土地，内心难免产生些许情绪。行走在北京校园的街头，看着遍地的杨树，在这个最好的季节，仿佛梦回幼时的家乡，原来我的内心深处一直对故乡的一切有着深深的眷恋，一点点相似的物事便已暴露，几年江南烟雨的温柔婉约也不能将之改变。</p>
-<p>工作上第一次进入这么大的前端组，充满兴奋和忐忑，周五分享会想也了解到组内的一些业务和技术情况，有些业务技术虽然很老，但也看到组内积极想新技术转变的决心和努力，希望自己能够在这个过程获得成长和作出贡献。这里的也充满挑战，linux开发流程，偏后端知识的学习（ngnix，java），vue，微信小程序等等，有挑战才有进步，加油，期待两年后的自己。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前几天给项目代码加eslint，并且使用lint-staged和husky在pre-commit阶段做代码检查，也踩了个坑，这里对这两个npm包作简要介绍。</p>
+<h1 id="为什么使用"><a href="#为什么使用" class="headerlink" title="为什么使用"></a>为什么使用</h1><p>通常项目中我们通过<code>eslint</code>和<code>stylelint</code>这些lint工具来检查代码的规范与否，保证良好的代码规范，从而在多人协作中保障项目质量和可维护性。正常我们会在提交代码前手动执行语法检查，而<code>lint-staged</code>和<code>husky</code>而让这一过程自动化，在git的pre-commit阶段来检测你的代码，如果存在语法错误会中断commit。</p>
+<a id="more"></a>
+<h3 id="husky"><a href="#husky" class="headerlink" title="husky"></a>husky</h3><p><a href="https://github.com/typicode/husky" target="_blank" rel="external">husky</a>可以让git hooks的使用变得更简单方便。运行<code>npm install husky@next --save-dev</code>安装最新版本，它会在我们项目根目录下面的<code>.git/hooks</code>文件夹下面创建<code>pre-commit</code>、<code>pre-push</code>等hooks。这些hooks可以让我们直接在<code>package.json</code>的<code>script</code>里运行我们想要在某个hook阶段执行的命令。</p>
+<p>版本0.14之后配置有所改变，之前不知道npm安装使用@next会安装最新开发版本，一直安装稳定版本却使用心得配置，也算踩的坑吧，具体配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// package.json， 最新版本</div><div class="line">&#123;</div><div class="line">  <span class="attr">"husky"</span>: &#123;</div><div class="line">    <span class="attr">"hooks"</span>: &#123;</div><div class="line">      <span class="attr">"pre-commit"</span>: <span class="string">"npm test"</span>,</div><div class="line">      <span class="attr">"pre-push"</span>: <span class="string">"npm test"</span>,</div><div class="line">      <span class="attr">"..."</span>: <span class="string">"..."</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">// package.json 版本0.14之前</div><div class="line">&#123;  <span class="attr">"scripts"</span>: &#123;    </div><div class="line">	<span class="attr">"precommit"</span>: <span class="string">"npm test"</span>,  </div><div class="line">    <span class="attr">"prepush"</span>: <span class="string">"npm test"</span>,  </div><div class="line">    <span class="attr">"..."</span>: <span class="string">"..."</span>  </div><div class="line"> &#125;&#125;</div></pre></td></tr></table></figure>
+<p>而仅使用husky在提交代码时会检查所有文件，我们肯定不希望这样，仅仅检查git add .的文件才是我们期望的。</p>
+<h1 id="lint-staged"><a href="#lint-staged" class="headerlink" title="lint-staged"></a>lint-staged</h1><p><a href="https://github.com/okonet/lint-staged" target="_blank" rel="external">lint-staged</a>可以在git staged阶段的文件上执行linters，简单点来说就是当我们运行<code>eslint</code>或<code>stylelint</code>的命令时，只会检查我们通过<code>git add</code>添加到暂存区的文件，可以避免我们每次检查都把整个项目的代码都检查一遍。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// package.json</div><div class="line">"lint-staged": &#123;</div><div class="line">    "*.js": ["eslint --fix", "git add"]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -416,7 +423,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/北漂/" rel="tag">#北漂</a>
+            <a href="/tags/工程化/" rel="tag">#工程化</a>
           
         </div>
       
@@ -425,17 +432,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/09/原生WebGL小试牛刀/" rel="next" title="原生WebGL小试牛刀">
-                <i class="fa fa-chevron-left"></i> 原生WebGL小试牛刀
+              <a href="/2018/04/15/北漂初感/" rel="next" title="北漂初感">
+                <i class="fa fa-chevron-left"></i> 北漂初感
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/" rel="prev" title="lint-staged和husky在pre-commit阶段做代码检查">
-                lint-staged和husky在pre-commit阶段做代码检查 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -450,10 +453,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2018/04/15/北漂初感/"
-     data-title="北漂初感"
+        <div class="ds-share flat" data-thread-key="2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/"
+     data-title="lint-staged和husky在pre-commit阶段做代码检查"
      data-content=""
-     data-url="https://dsb123dsb.github.io/2018/04/15/北漂初感/">
+     data-url="https://dsb123dsb.github.io/2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -483,8 +486,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/04/15/北漂初感/"
-           data-title="北漂初感" data-url="https://dsb123dsb.github.io/2018/04/15/北漂初感/">
+      <div class="ds-thread" data-thread-key="2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/"
+           data-title="lint-staged和husky在pre-commit阶段做代码检查" data-url="https://dsb123dsb.github.io/2018/05/26/lint-staged和husky在pre-commit阶段做代码检查/">
       </div>
     
   </div>
@@ -634,7 +637,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么使用"><span class="nav-number">2.</span> <span class="nav-text">为什么使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#husky"><span class="nav-number">2.0.1.</span> <span class="nav-text">husky</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lint-staged"><span class="nav-number">3.</span> <span class="nav-text">lint-staged</span></a></li></ol></div>
             
           </div>
         </section>
