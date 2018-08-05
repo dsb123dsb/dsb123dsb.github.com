@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="XX雨中人">
 <meta property="og:description" content="纸上得来终觉浅，觉知此事要躬行  前言​    工作后发现写文章的频率变得少了很多，还是要多总结下的，最近在开发公司搜狗搜索快应用，开发最初毫无经验完全对着文档，快速迭代了好几版，也是时候做个总结和吐槽了。、 快应用是什么？借用官方的说法有三点：  基于手机硬件平台的新型应用形态，标准由主流手机厂商（==仅限安卓==）组成的快应用联盟联合制定。 快应用标准的诞生将在研发接口、能力接入、开发者服务">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-21T13:39:35.688Z">
+<meta property="og:updated_time" content="2018-08-05T13:25:56.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快应用开发实践踩坑">
 <meta name="twitter:description" content="纸上得来终觉浅，觉知此事要躬行  前言​    工作后发现写文章的频率变得少了很多，还是要多总结下的，最近在开发公司搜狗搜索快应用，开发最初毫无经验完全对着文档，快速迭代了好几版，也是时候做个总结和吐槽了。、 快应用是什么？借用官方的说法有三点：  基于手机硬件平台的新型应用形态，标准由主流手机厂商（==仅限安卓==）组成的快应用联盟联合制定。 快应用标准的诞生将在研发接口、能力接入、开发者服务">
@@ -382,16 +382,16 @@
 <a id="more"></a>
 <p>##开发流水账</p>
 <ol>
-<li><p>开发工具：首先官方提供了开发工具<code>hap-toolkit</code> 和快应用调试器（直接下载安装，支持扫码本地安装）,具体开发可参见文档，值得注意的是使用hap开发时，如果升级了hap版本，要记得在项目目录下执行<code>hap update</code> 不然后面执行hap命令打包会出问题。说到打包，打包签名包后要想使用调试器本地安装要记得先清空系统快应用缓存。快应用官方没有ide，华为自己开发了一个ide，为了和ide搭配又开发了个调试器，很坑，在官方调试器没问题，放到华为调试器上会报一堆错误，，目前还没完美解决。真希望对于开发工具和标准能做到统一啊</p>
-</li>
-<li><p>全局配置<code>manifest.json</code>文件:包括项目的一些基本信息，和全局配置项和全局数据，比如标题栏、debug级别、路由、最低平台、菜单、页面设计基准等</p>
-</li>
+<li>开发工具：首先官方提供了开发工具<code>hap-toolkit</code> 和快应用调试器（直接下载安装，支持扫码本地安装）,具体开发可参见文档，值得注意的是使用hap开发时，如果升级了hap版本，要记得在项目目录下执行<code>hap update</code> 不然后面执行hap命令打包会出问题。说到打包，打包签名包后要想使用调试器本地安装要记得先清空系统快应用缓存。快应用官方没有ide，华为自己开发了一个ide，为了和ide搭配又开发了个调试器，很坑，在官方调试器没问题，放到华为调试器上会报一堆错误，，目前还没完美解决。真希望对于开发工具和标准能做到统一啊</li>
+<li>全局配置<code>manifest.json</code>文件:包括项目的一些基本信息，和全局配置项和全局数据，比如标题栏、debug级别、路由、最低平台、菜单、页面设计基准等</li>
 <li>样式：样式感觉比较坑，支持特别少，盒模型border-box模型，布局不支持绝对定位，想要灵活定位只能使用stack组件</li>
 <li>路由：支持新增、替换、回退路由，并且能获取当前路由页面栈，路由可以传递参数，路由页面可以通过<code>this.params</code>取到，实际中发现死活去不到，最后发现要想渠道商必须在页面public对象内定义</li>
 <li>web组件：我们搜索结果页是使用的webview，发现某些case下页面会特别卡顿，最后偶然发现web组件是直接暴漏在template下的，外面包一层div，就可以解决webview内部再次搜索卡顿，也是侥幸能发现这个问题的解决方案。</li>
 <li>输入框输入某些case 出sug框时会莫名闪退，以为我们为了提高list组件滚动性能把搜索框放进了list组件内部，接着就出现了某些查询词时闪退，反复验证搜索框放在外面就不会，后面考虑到既然是因为sug直接暴漏在在list内部会闪退，那我们就把sug框也放进list内部进行嵌套，果然解决了闪退问题</li>
-<li>list组件滚动有个坑，通过scrollTo事件到顶时不会触发到顶事件</li>
+<li>list组件滚动有个坑，通过scrollTo事件到顶时不会触发到顶事件,在tab组件内嵌套时外部也不能跟着滚动，嵌套list内部list不识别三元判别(不识别绑定数据变化)，tab组件直接嵌套list滚动置顶会有一个tab的距离差值，list外面包一层div</li>
 <li>接口问题：这个感觉最不合理的，他们接口竟然几乎全部都是异步接口，这让对数据流有所要求的地方写起来极其别扭，彷佛回到回调地狱</li>
+<li>父子组件传递参数不能用驼峰，这个被坑了好几次</li>
+<li>channelReady判断不准，false也可以吊起，吊起url参数长度限制，吊起也必须关闭代理</li>
 <li>push消息：push消息有最低版本要求，而且用户必须创建桌面图标才能收到</li>
 <li>最后吐槽：文档很多使用地方写的很不详细，而且厂商有变动的地方开发者也无法第一时间得知，从而多浪费很多时间。</li>
 </ol>
@@ -456,6 +456,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/05/数组扁平化/" rel="prev" title="数组扁平化">
+                数组扁平化 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -549,7 +553,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-count">54</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
