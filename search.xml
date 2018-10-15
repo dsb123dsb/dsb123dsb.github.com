@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[webpack模块化]]></title>
+      <title><![CDATA[webpack treeshaking]]></title>
       <url>https://dsb123dsb.github.io/2018/10/15/webpack%20treeshaking/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>纸上得来终觉浅，绝知此事要躬行</p>
@@ -1925,9 +1925,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> ES6 </tag>
-            
             <tag> 继承 </tag>
+            
+            <tag> ES6 </tag>
             
         </tags>
         
