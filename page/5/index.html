@@ -294,6 +294,140 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/23/javaScript语言精粹的二三代码/" itemprop="url">
+                  javaScript语言精粹的二三代码+
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T22:58:44+08:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">基础杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/23/javaScript语言精粹的二三代码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/23/javaScript语言精粹的二三代码/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/23/javaScript语言精粹的二三代码/" class="leancloud_visitors" data-flag-title="javaScript语言精粹的二三代码+">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>早就耳闻《javaScript语言精粹》写的很经典，一定要反复读，自觉前端已初窥门径，而且这段时间又接触算法和ES6，看完之后的确很棒，原来理解不深的地方恍然大悟，对这门语言的优雅和糟粕也更加了然于心；这里把里面一些代码略作摘抄，也算是再加咀嚼<delete><del>代码是敲出来的</del></delete></p>
+</blockquote>
+<h1 id="fade-background"><a href="#fade-background" class="headerlink" title="fade-background"></a>fade-background</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fade =<span class="function">(<span class="params">node</span>)=&gt;</span>&#123;</div><div class="line"><span class="keyword">var</span> level=<span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> step=<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">    <span class="keyword">var</span> hex =level.toString(<span class="number">16</span>);</div><div class="line">    node.style.backgroundColor=<span class="string">"#FFFF"</span>+hex+hex;</div><div class="line">    <span class="keyword">if</span>(level&lt;<span class="number">15</span>)&#123;</div><div class="line">       level+=<span class="number">1</span>;</div><div class="line">       setTimeout(step,<span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line"> &#125;;setTimeout(step,<span class="number">100</span>);</div><div class="line">&#125;</div><div class="line">fade(<span class="built_in">document</span>.body);</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/23/javaScript语言精粹的二三代码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/08/浅谈rem/" itemprop="url">
                   浅谈rem
                 </a>
@@ -1488,141 +1622,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/20/利用reduce-统计字符串中字符出现的次数/" itemprop="url">
-                  利用reduce()统计字符串中字符出现的次数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-20T22:48:43+08:00" content="2016-09-20">
-              2016-09-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/20/利用reduce-统计字符串中字符出现的次数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/20/利用reduce-统计字符串中字符出现的次数/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/09/20/利用reduce-统计字符串中字符出现的次数/" class="leancloud_visitors" data-flag-title="利用reduce()统计字符串中字符出现的次数">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>有人说reduce()是js的二向箔，那我们就从统计字符串中字符出现的次数这个例子领略它的强大！</p>
-</blockquote>
-<h1 id="何为reduce-方法"><a href="#何为reduce-方法" class="headerlink" title="何为reduce()方法"></a>何为reduce()方法</h1><h2 id="Array-reduce-方法"><a href="#Array-reduce-方法" class="headerlink" title="Array reduce()方法:"></a>Array reduce()方法:</h2><p>&emsp;&emsp;此方法可以对数组中的所有元素调用指定的回调函数。该回调函数的返回值为累积结果，并且此返回值在下一次调用该回调函数时作为参数提供。最后的返回值是通过最后一次调用回调函数获得的累积结果。</p>
-<h2 id="语法结构"><a href="#语法结构" class="headerlink" title="语法结构:"></a>语法结构:</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">array.reduce(callbackfn[, initial])</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/20/利用reduce-统计字符串中字符出现的次数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1668,7 +1667,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1685,7 +1684,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

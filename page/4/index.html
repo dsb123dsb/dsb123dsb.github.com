@@ -294,6 +294,145 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/24/ES6学习笔记-编程风格总结/" itemprop="url">
+                  ES6学习笔记-编程风格总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-24T21:23:10+08:00" content="2017-01-24">
+              2017-01-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">基础杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/24/ES6学习笔记-编程风格总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/24/ES6学习笔记-编程风格总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/24/ES6学习笔记-编程风格总结/" class="leancloud_visitors" data-flag-title="ES6学习笔记-编程风格总结">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>拖拖拉拉好几个月了，终于在假期第一天集中精力把阮老师的<strong>ECMAScript 6 入门</strong>剩余的几章看完了（不得不吐槽，为了支持开源书籍特意买了纸质版，真是排版让人蛋疼，还是电子版舒服）,感觉21章对实践颇有益处，略作摘抄，<a href="http://es6.ruanyifeng.com/#docs/style" target="_blank" rel="external">原文传送门猛戳</a></p>
+<h1 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h1><h2 id="let-取代-var"><a href="#let-取代-var" class="headerlink" title="let 取代 var"></a>let 取代 var</h2><p>ES6提出了两个新的声明变量的命令：let和const。其中，let完全可以取代var，因为两者语义相同，而且let没有副作用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</div><div class="line">  <span class="keyword">let</span> x = <span class="string">'hello'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">  <span class="built_in">console</span>.log(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码如果用var替代let，实际上就声明了两个全局变量，这显然不是本意。变量应该只在其声明的代码块内有效，var命令做不到这一点。</p>
+<p>var命令存在变量提升效用，let命令没有这个问题。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(<span class="literal">true</span>) &#123;</div><div class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// ReferenceError</span></div><div class="line">  <span class="keyword">let</span> x = <span class="string">'hello'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码如果使用var替代let，console.log那一行就不会报错，而是会输出undefined，因为变量声明提升到代码块的头部。这违反了变量先声明后使用的原则。</p>
+<p>所以，建议不再使用var命令，而是使用let命令取代。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/24/ES6学习笔记-编程风格总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/14/ES5和ES6中的继承/" itemprop="url">
                   ES5和ES6中的继承
                 </a>
@@ -1478,140 +1617,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/23/javaScript语言精粹的二三代码/" itemprop="url">
-                  javaScript语言精粹的二三代码+
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-23T22:58:44+08:00" content="2016-10-23">
-              2016-10-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">基础杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/23/javaScript语言精粹的二三代码/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/23/javaScript语言精粹的二三代码/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/10/23/javaScript语言精粹的二三代码/" class="leancloud_visitors" data-flag-title="javaScript语言精粹的二三代码+">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>早就耳闻《javaScript语言精粹》写的很经典，一定要反复读，自觉前端已初窥门径，而且这段时间又接触算法和ES6，看完之后的确很棒，原来理解不深的地方恍然大悟，对这门语言的优雅和糟粕也更加了然于心；这里把里面一些代码略作摘抄，也算是再加咀嚼<delete><del>代码是敲出来的</del></delete></p>
-</blockquote>
-<h1 id="fade-background"><a href="#fade-background" class="headerlink" title="fade-background"></a>fade-background</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fade =<span class="function">(<span class="params">node</span>)=&gt;</span>&#123;</div><div class="line"><span class="keyword">var</span> level=<span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> step=<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">    <span class="keyword">var</span> hex =level.toString(<span class="number">16</span>);</div><div class="line">    node.style.backgroundColor=<span class="string">"#FFFF"</span>+hex+hex;</div><div class="line">    <span class="keyword">if</span>(level&lt;<span class="number">15</span>)&#123;</div><div class="line">       level+=<span class="number">1</span>;</div><div class="line">       setTimeout(step,<span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line"> &#125;;setTimeout(step,<span class="number">100</span>);</div><div class="line">&#125;</div><div class="line">fade(<span class="built_in">document</span>.body);</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/23/javaScript语言精粹的二三代码/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1657,7 +1662,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1674,7 +1679,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
