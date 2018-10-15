@@ -1925,9 +1925,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> ES6 </tag>
-            
             <tag> 继承 </tag>
+            
+            <tag> ES6 </tag>
             
         </tags>
         
