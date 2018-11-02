@@ -177,7 +177,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /******/ });
 ```
 
-坑爹的webpack最新版本编译后是eval函数解析了，可读性很差，大家感觉看着不易读可以去网上找找之前版本的，其实主要就是最后那个eval函数，可以看到cube和square函数都有定义，当时花了很多时间调试，比如和babel编译冲突，等等，最后居然发现是开发模式的原因，巨坑啊，webpack文档上写的就是开发模式的，哎，到底还是对原理了解不深，前面也说了tree shaking的原理是使用uglify实现的。
+其实主要就是最后那个eval函数，可以看到cube和square函数都有定义，当时花了很多时间调试，比如和babel编译冲突，等等，最后居然发现是开发模式的原因，巨坑啊，webpack文档上写的就是开发模式的，哎，到底还是对原理了解不深，前面也说了tree shaking的原理是使用uglify实现的。
 
 想想也能理解，开发模式是不开启开启压缩的，接下来看下压缩后的编译代码：
 
