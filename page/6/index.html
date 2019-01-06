@@ -294,6 +294,140 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/22/使用console进行性能测试和计算代码运行时间/" itemprop="url">
+                  使用console进行性能测试和计算代码运行时间
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-22T09:30:06+08:00" content="2016-09-22">
+              2016-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/22/使用console进行性能测试和计算代码运行时间/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/使用console进行性能测试和计算代码运行时间/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/22/使用console进行性能测试和计算代码运行时间/" class="leancloud_visitors" data-flag-title="使用console进行性能测试和计算代码运行时间">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>对于前端开发人员，在开发过程中经常需要监控某些表达式或变量的值，如果使用用debugger会显得过于笨重，最常用的方法是会将值输出到控制台上方便调试。最常用的语句就是console.log(expression)了。</p>
+</blockquote>
+<h1 id="从早前一道阿里实习生招聘笔试题目入手"><a href="#从早前一道阿里实习生招聘笔试题目入手" class="headerlink" title="从早前一道阿里实习生招聘笔试题目入手"></a>从早前一道阿里实习生招聘笔试题目入手</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.time(<span class="string">'time span'</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.timeEnd(<span class="string">'time span'</span>);</div><div class="line">&#125;</div><div class="line">setTimeout(f1, <span class="number">100</span>);</div><div class="line">setTimeout(f2, <span class="number">200</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">waitForMs</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> now = <span class="built_in">Date</span>.now();</div><div class="line">	<span class="keyword">while</span> (<span class="built_in">Date</span>.now() - now &lt; n) &#123;</div><div class="line">	&#125;<span class="comment">//空while</span></div><div class="line">&#125;</div><div class="line">waitForMs(<span class="number">500</span>);<span class="comment">//输出什么？</span></div><div class="line"><span class="comment">//-&gt;time span: 0ms</span></div><div class="line"><span class="comment">//实际测试输出的是 time span: 0.023ms</span></div><div class="line"><span class="comment">//实际的time是不确定的接近于0ms的，而不是0ms;</span></div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/22/使用console进行性能测试和计算代码运行时间/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/20/利用reduce-统计字符串中字符出现的次数/" itemprop="url">
                   利用reduce()统计字符串中字符出现的次数
                 </a>
@@ -987,7 +1121,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1004,7 +1138,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
