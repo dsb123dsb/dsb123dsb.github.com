@@ -294,6 +294,159 @@
             
               
                 
+                <a class="post-title-link" href="/2019/01/13/一段replace-into-引发的血案/" itemprop="url">
+                  一段replace into 引发的血案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-01-13T15:16:02+08:00" content="2019-01-13">
+              2019-01-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">基础杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2019/01/13/一段replace-into-引发的血案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/01/13/一段replace-into-引发的血案/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/01/13/一段replace-into-引发的血案/" class="leancloud_visitors" data-flag-title="一段replace into 引发的血案">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<p>最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。</p>
+<p>在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。</p>
+<p>通常使用<code>replace into</code>和<code>insert into on deplicate key update</code></p>
+<p>执行的逻辑</p>
+<ol>
+<li><p>遇到PRIMARY KEY或UNIQUE索引的，新记录与旧记录有冲突的（这里实际产生了异常duplicate key error），replace into会把旧记录删除，然后再插入新记录， insert into on deplicate key update则只会更新。</p>
+</li>
+<li><p>若是新记录没有冲突，就直接插入一条新记录，与insert into一样。</p>
+</li>
+</ol>
+<p>关键问题就在第一条，本人也是这里踩的坑</p>
+<p>针对第一种逻辑会有问题</p>
+<ul>
+<li><p>把旧记录删除之后，插入的新记录只是插入了那些指定的字段，原本不想更新的字段，直接为默认值了，会导致数据丢失</p>
+</li>
+<li><p>若旧记录的id跟其他表是有关联的，更新后新记录会产生新的id，导致这种关联丢失</p>
+</li>
+<li><p>而且使用replace into会导致自增主键id一直增大，很容易导致id值范围不够用</p>
+</li>
+<li><p>若是数据库存在主从关系，在主机器上进行了replace into操作之后，从机器上对应表的AUTO_INCREMENT是不会更新的，导致从机器转为主机器时，新插入数据会出现异常，直到AUTO_INCREMENT增加到原来主机器的值为止。 </p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2019/01/06/mysql语句小结/" itemprop="url">
                   mysql语句小结
                 </a>
@@ -1460,147 +1613,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/28/http2-0小结/" itemprop="url">
-                  http2.0小结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-28T12:35:31+08:00" content="2017-10-28">
-              2017-10-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">基础杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/10/28/http2-0小结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/28/http2-0小结/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/10/28/http2-0小结/" class="leancloud_visitors" data-flag-title="http2.0小结">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>纸上得来终觉浅，觉知此事要躬行</p>
-</blockquote>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>如今，http1.1是互联网中的主要协议，随着web技术的飞速发展，http1.1已经无法满足用户对性能的要求，此后谷歌推出SPDY,意在解决http1.1中广为人知的性能问题，其在被行业采用并证明能够大幅提升性能后，已经具备了成为一个标准的条件。</p>
-<p>Http2.0是http协议自1999年http1.1发布后的首个更新，主要基于SPDY协议，於2015年正式发表。</p>
-<h1 id="http2-0变化"><a href="#http2-0变化" class="headerlink" title="http2.0变化"></a>http2.0变化</h1><h2 id="二进制分帧"><a href="#二进制分帧" class="headerlink" title="二进制分帧"></a>二进制分帧</h2><p>帧：http2.0数据通信的最小单位。</p>
-<p>消息（message）：指http2.0中逻辑上的http消息。例如请求和响应，消息由一个或多个帧组成。</p>
-<p>流：存在于连接中的一个虚拟通道。流可以承载双向消息，每个流都有一个唯一的证书ID。</p>
-<p>http2.0采用二进制格式传输数据，而非http1x的文本格式，二进制协议解析起来更高效。</p>
-<p>Http1.x的请求和响应报文，都是起始行，首部和整体正文（可选）组成，各部分之间以文本换行符分隔。http2.0将请求和响应数据分割为更小的帧，并且它们采用二进制编码。</p>
-<p>http2.0中，同域名下所有通信都在单个连接上完成（多路复用中介绍），这个连接可以承载任意数量数量的双向数据流。每个数据流都以消息的形式发送，而消息又由一个或多个帧组成。多个帧之间可以乱序发送，因为根据帧首部的流标识可以重新组装。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/10/28/http2-0小结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1646,7 +1658,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

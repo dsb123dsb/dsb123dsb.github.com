@@ -4,6 +4,51 @@
   
     
     <entry>
+      <title><![CDATA[一段replace into 引发的血案]]></title>
+      <url>https://dsb123dsb.github.io/2019/01/13/%E4%B8%80%E6%AE%B5replace-into-%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<p>最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。</p>
+<p>在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。</p>
+<p>通常使用<code>replace into</code>和<code>insert into on deplicate key update</code></p>
+<p>执行的逻辑</p>
+<ol>
+<li><p>遇到PRIMARY KEY或UNIQUE索引的，新记录与旧记录有冲突的（这里实际产生了异常duplicate key error），replace into会把旧记录删除，然后再插入新记录， insert into on deplicate key update则只会更新。</p>
+</li>
+<li><p>若是新记录没有冲突，就直接插入一条新记录，与insert into一样。</p>
+</li>
+</ol>
+<p>关键问题就在第一条，本人也是这里踩的坑</p>
+<p>针对第一种逻辑会有问题</p>
+<ul>
+<li><p>把旧记录删除之后，插入的新记录只是插入了那些指定的字段，原本不想更新的字段，直接为默认值了，会导致数据丢失</p>
+</li>
+<li><p>若旧记录的id跟其他表是有关联的，更新后新记录会产生新的id，导致这种关联丢失</p>
+</li>
+<li><p>而且使用replace into会导致自增主键id一直增大，很容易导致id值范围不够用</p>
+</li>
+<li><p>若是数据库存在主从关系，在主机器上进行了replace into操作之后，从机器上对应表的AUTO_INCREMENT是不会更新的，导致从机器转为主机器时，新插入数据会出现异常，直到AUTO_INCREMENT增加到原来主机器的值为止。 </p>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 基础杂谈 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[mysql语句小结]]></title>
       <url>https://dsb123dsb.github.io/2019/01/06/mysql%E8%AF%AD%E5%8F%A5%E5%B0%8F%E7%BB%93/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -1975,9 +2020,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> ES6 </tag>
-            
             <tag> 继承 </tag>
+            
+            <tag> ES6 </tag>
             
         </tags>
         
@@ -2538,7 +2583,7 @@ const nodes = Array.from(foo);
 <p>现在你的webpack的配置已经允许你使用ES6以及JSX的语法了。继续用上面的例子进行测试，不过这次我们会使用React，记得先安装 React 和 React-DOM</p>
 <pre><code>npm install --save react react-dom
 </code></pre><p>使用ES6的语法，更新Greeter.js并返回一个React组件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//Greeter,js</span></div><div class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">'./config.json'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeter</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;</div><div class="line">        &#123;config.greetText&#125;</div><div class="line">      &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">    );</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">export default Greeter</span></div></pre></td></tr></table></figure></p>
-<p>使用ES6的模块定义和渲染Greeter模块<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> Greeter <span class="keyword">from</span> <span class="string">'./Greeter'</span>;</div><div class="line"></div><div class="line">render(<span class="xml"><span class="tag">&lt;<span class="name">Greeter</span> /&gt;</span>, document.getElementById('root'));</span></div></pre></td></tr></table></figure></p>
+<p>使用ES6的模块定义和渲染Greeter模块<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> Greeter <span class="keyword">from</span> <span class="string">'./Greeter'</span>;</div><div class="line"></div><div class="line">render(&lt;Greeter /&gt;, document.getElementById('root'));</div></pre></td></tr></table></figure></p>
 <h4 id="Babel的配置选项"><a href="#Babel的配置选项" class="headerlink" title="Babel的配置选项"></a>Babel的配置选项</h4><p>Babel其实可以完全在webpack.config.js中进行配置，但是考虑到babel具有非常多的配置选项，在单一的webpack.config.js文件中进行配置往往使得这个文件显得太复杂，因此一些开发者支持把babel的配置选项放在一个单独的名为 “.babelrc” 的配置文件中。我们现在的babel的配置并不算复杂，不过之后我们会再加一些东西，因此现在我们就提取出相关部分，分两个配置文件进行配置（webpack会自动调用.babelrc里的babel配置选项），如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  devtool: <span class="string">'eval-source-map'</span>,</div><div class="line"></div><div class="line">  entry:  __dirname + <span class="string">"/app/main.js"</span>,</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname + <span class="string">"/public"</span>,</div><div class="line">    filename: <span class="string">"bundle.js"</span></div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="built_in">module</span>: &#123;</div><div class="line">    loaders: [</div><div class="line">      &#123;</div><div class="line">        test: <span class="regexp">/\.json$/</span>,</div><div class="line">        loader: <span class="string">"json"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: <span class="regexp">/\.js$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        loader: <span class="string">'babel'</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  devServer: &#123;...&#125; <span class="comment">// Omitted for brevity</span></div></pre></td></tr></table></figure></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//.babelrc</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"presets"</span>: [<span class="string">"react"</span>, <span class="string">"es2015"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>到目前为止，我们已经知道了，对于模块，Webpack能提供非常强大的处理功能，那那些是模块呢。</p>
@@ -2550,7 +2595,7 @@ const nodes = Array.from(foo);
 <p>注：感叹号的作用在于使同一文件能够使用不同类型的loader</p>
 </blockquote>
 <p>接下来，在app文件夹里创建一个名字为”main.css”的文件，对一些元素设置样式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">html &#123;</div><div class="line">  box-sizing: border-box;</div><div class="line">  -ms-text-size-adjust: <span class="number">100</span>%;</div><div class="line">  -webkit-text-size-adjust: <span class="number">100</span>%;</div><div class="line">&#125;</div><div class="line"></div><div class="line">*, *:before, *:after &#123;</div><div class="line">  box-sizing: inherit;</div><div class="line">&#125;</div><div class="line"></div><div class="line">body &#123;</div><div class="line">  margin: <span class="number">0</span>;</div><div class="line">  font-family: <span class="string">'Helvetica Neue'</span>, Helvetica, Arial, sans-serif;</div><div class="line">&#125;</div><div class="line"></div><div class="line">h1, h2, h3, h4, h5, h6, p, ul &#123;</div><div class="line">  margin: <span class="number">0</span>;</div><div class="line">  padding: <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>你还记得吗？webpack只有单一的入口，其它的模块需要通过 import, require, url等导入相关位置，为了让webpack能找到”main.css“文件，我们把它导入”main.js “中，如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//main.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> Greeter <span class="keyword">from</span> <span class="string">'./Greeter'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'./main.css'</span>;<span class="comment">//使用require导入css文件</span></div><div class="line"></div><div class="line">render(<span class="xml"><span class="tag">&lt;<span class="name">Greeter</span> /&gt;</span>, document.getElementById('root'));</span></div></pre></td></tr></table></figure></p>
+<p>你还记得吗？webpack只有单一的入口，其它的模块需要通过 import, require, url等导入相关位置，为了让webpack能找到”main.css“文件，我们把它导入”main.js “中，如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//main.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> Greeter <span class="keyword">from</span> <span class="string">'./Greeter'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'./main.css'</span>;<span class="comment">//使用require导入css文件</span></div><div class="line"></div><div class="line">render(&lt;Greeter /&gt;, document.getElementById('root'));</div></pre></td></tr></table></figure></p>
 <blockquote>
 <p>通常情况下，css会和js打包到同一个文件中，并不会打包为一个单独的css文件，不过通过合适的配置webpack也可以把css打包为单独的文件的。</p>
 <p>不过这也只是webpack把css当做模块而已，咱们继续看看一个真的CSS模块的实践。</p>
@@ -3398,9 +3443,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> html5 </tag>
-            
             <tag> js </tag>
+            
+            <tag> html5 </tag>
             
             <tag> &lt;font color=#00ff face=&quot;黑体&quot;size=4&gt;小游戏&lt;/font&gt; </tag>
             

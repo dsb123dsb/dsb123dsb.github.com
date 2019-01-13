@@ -294,6 +294,139 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/22/事件委托技术原理和使用（js，jquery）/" itemprop="url">
+                  事件委托技术原理和使用（js，jquery）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-22T10:07:07+08:00" content="2016-09-22">
+              2016-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术分享/" itemprop="url" rel="index">
+                    <span itemprop="name">技术分享</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/22/事件委托技术原理和使用（js，jquery）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/事件委托技术原理和使用（js，jquery）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/22/事件委托技术原理和使用（js，jquery）/" class="leancloud_visitors" data-flag-title="事件委托技术原理和使用（js，jquery）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="事件委托技术原理（摘自英文davidwalsh）"><a href="#事件委托技术原理（摘自英文davidwalsh）" class="headerlink" title="事件委托技术原理（摘自英文davidwalsh）"></a>事件委托技术原理（摘自英文<a href="https://davidwalsh.name/event-delegate" target="_blank" rel="external">davidwalsh</a>）</h1><p>事件委托（event delegation），使用时间委托技术能让你避免对特定的每个节点添加事件监听器；相反，事件监听器是被添加到它们的父元素上。事件监听器会分析从子元素冒泡上来的事件，找到哪个是子元素的事件。</p>
+<p>&emsp;首先，我们设定一个列表<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"parent-list"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"post-1"</span>&gt;</span>Item 1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"post-2"</span>&gt;</span>Item 2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"post-3"</span>&gt;</span>Item 3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"post-4"</span>&gt;</span>Item 4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"post-5"</span>&gt;</span>Item 5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"post-6"</span>&gt;</span>Item 6<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;我们假设要给每个li添加不同的事件，你可以给每个独立的li元素添加事件监听器，但有时这些li元素可能会被删除，可能会有新增，监听它们的新增或删除事件将会是一场噩梦，尤其是当你的监听事件的代码放在应用的另一个地方时。但是，如果你将监听器安放到它们的父元素上呢？你如何能知道是那个子元素被点击了？<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/22/事件委托技术原理和使用（js，jquery）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/22/使用console进行性能测试和计算代码运行时间/" itemprop="url">
                   使用console进行性能测试和计算代码运行时间
                 </a>
@@ -1121,7 +1254,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

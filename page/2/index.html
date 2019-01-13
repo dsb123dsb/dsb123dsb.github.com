@@ -294,6 +294,147 @@
             
               
                 
+                <a class="post-title-link" href="/2017/10/28/http2-0小结/" itemprop="url">
+                  http2.0小结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-28T12:35:31+08:00" content="2017-10-28">
+              2017-10-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">基础杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/10/28/http2-0小结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/28/http2-0小结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/10/28/http2-0小结/" class="leancloud_visitors" data-flag-title="http2.0小结">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>纸上得来终觉浅，觉知此事要躬行</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>如今，http1.1是互联网中的主要协议，随着web技术的飞速发展，http1.1已经无法满足用户对性能的要求，此后谷歌推出SPDY,意在解决http1.1中广为人知的性能问题，其在被行业采用并证明能够大幅提升性能后，已经具备了成为一个标准的条件。</p>
+<p>Http2.0是http协议自1999年http1.1发布后的首个更新，主要基于SPDY协议，於2015年正式发表。</p>
+<h1 id="http2-0变化"><a href="#http2-0变化" class="headerlink" title="http2.0变化"></a>http2.0变化</h1><h2 id="二进制分帧"><a href="#二进制分帧" class="headerlink" title="二进制分帧"></a>二进制分帧</h2><p>帧：http2.0数据通信的最小单位。</p>
+<p>消息（message）：指http2.0中逻辑上的http消息。例如请求和响应，消息由一个或多个帧组成。</p>
+<p>流：存在于连接中的一个虚拟通道。流可以承载双向消息，每个流都有一个唯一的证书ID。</p>
+<p>http2.0采用二进制格式传输数据，而非http1x的文本格式，二进制协议解析起来更高效。</p>
+<p>Http1.x的请求和响应报文，都是起始行，首部和整体正文（可选）组成，各部分之间以文本换行符分隔。http2.0将请求和响应数据分割为更小的帧，并且它们采用二进制编码。</p>
+<p>http2.0中，同域名下所有通信都在单个连接上完成（多路复用中介绍），这个连接可以承载任意数量数量的双向数据流。每个数据流都以消息的形式发送，而消息又由一个或多个帧组成。多个帧之间可以乱序发送，因为根据帧首部的流标识可以重新组装。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/10/28/http2-0小结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/10/03/hello-world/" itemprop="url">
                   Hello World
                 </a>
@@ -1499,146 +1640,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/02/JavaScript监听全部Ajax请求事件的方法/" itemprop="url">
-                  JavaScript监听全部Ajax请求事件的方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-02T15:34:59+08:00" content="2017-05-02">
-              2017-05-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/05/02/JavaScript监听全部Ajax请求事件的方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/02/JavaScript监听全部Ajax请求事件的方法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/05/02/JavaScript监听全部Ajax请求事件的方法/" class="leancloud_visitors" data-flag-title="JavaScript监听全部Ajax请求事件的方法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>纸上得来终觉浅，绝知此事要躬行</p>
-</blockquote>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前段时间做阿里暑期实习笔试题目，抽到的试题最后一道要求写个组件监听页面所有ajax请求，当时大概能猜到要改写XMLHttpReuqest对象，不过最后还是没写出来，回来查了下资料：</p>
-<ol>
-<li>若Ajax请求是由jQuery的$.ajax发起的，默认情况下可以使用 jQuery的Global Ajax Event Handlers监听到Ajax事件，</li>
-<li>然而我遇到的却是用原生JavaScript发起的Ajax请求，所以这种方法行不通。</li>
-<li>还有其他方法，比如说 Pub/Sub，但是这个发起请求的 js 代码我是无法改动的，也就不存在向代码里添加 publish 的问题。同理，jQuery 的 .bind 和 .trigger 也无法使用。</li>
-</ol>
-<p>最后的方案：实现主要是两点：<code>**override XMLHttpRequest**</code>和<strong>自定义事件</strong>（这一块红宝书有讲，也看过，并没有重视，自己没有好好钻研，怨不得别人）<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/05/02/JavaScript监听全部Ajax请求事件的方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1684,7 +1685,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

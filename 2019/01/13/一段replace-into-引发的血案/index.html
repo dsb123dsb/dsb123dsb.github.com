@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="实习," />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="纸上得来终觉浅，绝知此事要躬行  写在前面竟然实习都快一个月了，算起来一周四天，也就工作十多天，第一个小程序也基本成型，先上一段感觉自己是傻逼的代码： 12345var achor=[2,4] ,len2=achor.length,arr=[1,2,3,4,4,5,5,5] ,len=arr.length, j=0;for(var i = j; i &amp;lt; len; i++)&amp;#123;">
-<meta name="keywords" content="实习">
+<meta name="description" content="纸上得来终觉浅，绝知此事要躬行  最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。 在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。 通常使用replace into和insert into on deplicate key update 执行的逻辑  遇到PRIMARY KEY或UNIQUE索引的，">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实习满月">
-<meta property="og:url" content="https://dsb123dsb.github.io/2016/12/21/实习满月/index.html">
+<meta property="og:title" content="一段replace into 引发的血案">
+<meta property="og:url" content="https://dsb123dsb.github.io/2019/01/13/一段replace-into-引发的血案/index.html">
 <meta property="og:site_name" content="XX雨中人">
-<meta property="og:description" content="纸上得来终觉浅，绝知此事要躬行  写在前面竟然实习都快一个月了，算起来一周四天，也就工作十多天，第一个小程序也基本成型，先上一段感觉自己是傻逼的代码： 12345var achor=[2,4] ,len2=achor.length,arr=[1,2,3,4,4,5,5,5] ,len=arr.length, j=0;for(var i = j; i &amp;lt; len; i++)&amp;#123;">
+<meta property="og:description" content="纸上得来终觉浅，绝知此事要躬行  最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。 在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。 通常使用replace into和insert into on deplicate key update 执行的逻辑  遇到PRIMARY KEY或UNIQUE索引的，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-03T13:53:51.000Z">
+<meta property="og:updated_time" content="2019-01-13T07:29:03.360Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="实习满月">
-<meta name="twitter:description" content="纸上得来终觉浅，绝知此事要躬行  写在前面竟然实习都快一个月了，算起来一周四天，也就工作十多天，第一个小程序也基本成型，先上一段感觉自己是傻逼的代码： 12345var achor=[2,4] ,len2=achor.length,arr=[1,2,3,4,4,5,5,5] ,len=arr.length, j=0;for(var i = j; i &amp;lt; len; i++)&amp;#123;">
+<meta name="twitter:title" content="一段replace into 引发的血案">
+<meta name="twitter:description" content="纸上得来终觉浅，绝知此事要躬行  最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。 在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。 通常使用replace into和insert into on deplicate key update 执行的逻辑  遇到PRIMARY KEY或UNIQUE索引的，">
 
 
 
@@ -118,9 +118,9 @@
 
 
 
-  <link rel="canonical" href="https://dsb123dsb.github.io/2016/12/21/实习满月/"/>
+  <link rel="canonical" href="https://dsb123dsb.github.io/2019/01/13/一段replace-into-引发的血案/"/>
 
-  <title> 实习满月 | XX雨中人 </title>
+  <title> 一段replace into 引发的血案 | XX雨中人 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +293,7 @@
             
             
               
-                实习满月
+                一段replace into 引发的血案
               
             
           </h1>
@@ -305,8 +305,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-21T21:30:24+08:00" content="2016-12-21">
-              2016-12-21
+            <time itemprop="dateCreated" datetime="2019-01-13T15:16:02+08:00" content="2019-01-13">
+              2019-01-13
             </time>
           </span>
 
@@ -319,8 +319,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">生活随笔</span>
+                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">基础杂谈</span>
                   </a>
                 </span>
 
@@ -335,8 +335,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/21/实习满月/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/21/实习满月/" itemprop="commentsCount"></span>
+                <a href="/2019/01/13/一段replace-into-引发的血案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/01/13/一段replace-into-引发的血案/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -346,7 +346,7 @@
 
           
           
-             <span id="/2016/12/21/实习满月/" class="leancloud_visitors" data-flag-title="实习满月">
+             <span id="/2019/01/13/一段replace-into-引发的血案/" class="leancloud_visitors" data-flag-title="一段replace into 引发的血案">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -371,21 +371,28 @@
         <blockquote>
 <p>纸上得来终觉浅，绝知此事要躬行</p>
 </blockquote>
-<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>竟然实习都快一个月了，算起来一周四天，也就工作十多天，第一个小程序也基本成型，先上一段感觉自己是傻逼的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> achor=[<span class="number">2</span>,<span class="number">4</span>] ,len2=achor.length,arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>] ,len=arr.length, j=<span class="number">0</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = j; i &lt; len; i++)&#123;</div><div class="line">                <span class="keyword">if</span>(i==achor[j])&#123; arr[i]=<span class="string">"洞主"</span>;j++&#125;</div><div class="line">                <span class="keyword">else</span>&#123; arr[i]=i+<span class="number">1</span>-j+<span class="string">"L"</span>;&#125;   ;  <span class="built_in">console</span>.log(arr[i])          </div><div class="line">&#125;;<span class="built_in">console</span>.log(arr)<span class="comment">//[ '1L', '2L', '洞主', '3L', '洞主', '4L', '5L', '6L' ]</span></div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h1 id="流水账"><a href="#流水账" class="headerlink" title="流水账"></a>流水账</h1><p>收获:对小程序的开发变得十分熟悉，</p>
+<p>最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。</p>
+<p>在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。</p>
+<p>通常使用<code>replace into</code>和<code>insert into on deplicate key update</code></p>
+<p>执行的逻辑</p>
 <ol>
-<li>具体也学到了很多技术，平时s只是很抽象的用的一些方法也在具体实践中用到，不得不不吐槽自己，抽象得写很easy，实际中竟然废了老大筋才想到，比如一个数组每隔几位循环一组变量、一个数组除了指定位数按顺序排列。遇到问题要先抽象出来做模型！！！</li>
-<li>知道了前端利用mock数据模拟;</li>
-<li>学会了把一些常用的函数或者css代码单独写出来模块化;</li>
-<li>学会了写接口文档和后台协作，要继续学后台语言;</li>
-<li>使用了websocket，Date()函数生成时间戳等等;</li>
-<li>具体页面布局时要提前总体上规划，根据具体需求选择合适方案，争取使用最少的代码获得需要的效果;</li>
-<li>继续保持良好注释的习惯。</li>
+<li><p>遇到PRIMARY KEY或UNIQUE索引的，新记录与旧记录有冲突的（这里实际产生了异常duplicate key error），replace into会把旧记录删除，然后再插入新记录， insert into on deplicate key update则只会更新。</p>
+</li>
+<li><p>若是新记录没有冲突，就直接插入一条新记录，与insert into一样。</p>
+</li>
 </ol>
-<h1 id="白痴的二三克"><a href="#白痴的二三克" class="headerlink" title="白痴的二三克"></a>白痴的二三克</h1><p>也有怅然若失的感觉：自主学习的时间变少了，es6和数据结构和算法还没看完，更别提数据库和计算机组成原理；不管怎样学习和追赶的脚步都不能停下，做让自己喜欢的事情！</p>
-<p>继续膜拜旁边学妹胖雪，昨天和她一起下班，吐槽哥哥每天凌晨后才下班会找不到女朋友，人家说可以一起加班阿，感觉也只有程序员能娶这样的额程序员妹子了，哈哈哈！</p>
+<p>关键问题就在第一条，本人也是这里踩的坑</p>
+<p>针对第一种逻辑会有问题</p>
+<ul>
+<li><p>把旧记录删除之后，插入的新记录只是插入了那些指定的字段，原本不想更新的字段，直接为默认值了，会导致数据丢失</p>
+</li>
+<li><p>若旧记录的id跟其他表是有关联的，更新后新记录会产生新的id，导致这种关联丢失</p>
+</li>
+<li><p>而且使用replace into会导致自增主键id一直增大，很容易导致id值范围不够用</p>
+</li>
+<li><p>若是数据库存在主从关系，在主机器上进行了replace into操作之后，从机器上对应表的AUTO_INCREMENT是不会更新的，导致从机器转为主机器时，新插入数据会出现异常，直到AUTO_INCREMENT增加到原来主机器的值为止。 </p>
+</li>
+</ul>
 
       
     </div>
@@ -429,7 +436,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/实习/" rel="tag">#实习</a>
+            <a href="/tags/mysql/" rel="tag">#mysql</a>
           
         </div>
       
@@ -438,17 +445,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/28/一周有感/" rel="next" title="一周有感">
-                <i class="fa fa-chevron-left"></i> 一周有感
+              <a href="/2019/01/06/mysql语句小结/" rel="next" title="mysql语句小结">
+                <i class="fa fa-chevron-left"></i> mysql语句小结
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/22/JavaScript定时器与执行机制解析/" rel="prev" title="JavaScript定时器与执行机制解析">
-                JavaScript定时器与执行机制解析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -463,10 +466,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/12/21/实习满月/"
-     data-title="实习满月"
+        <div class="ds-share flat" data-thread-key="2019/01/13/一段replace-into-引发的血案/"
+     data-title="一段replace into 引发的血案"
      data-content=""
-     data-url="https://dsb123dsb.github.io/2016/12/21/实习满月/">
+     data-url="https://dsb123dsb.github.io/2019/01/13/一段replace-into-引发的血案/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -496,8 +499,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/21/实习满月/"
-           data-title="实习满月" data-url="https://dsb123dsb.github.io/2016/12/21/实习满月/">
+      <div class="ds-thread" data-thread-key="2019/01/13/一段replace-into-引发的血案/"
+           data-title="一段replace into 引发的血案" data-url="https://dsb123dsb.github.io/2019/01/13/一段replace-into-引发的血案/">
       </div>
     
   </div>
@@ -629,7 +632,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流水账"><span class="nav-number">2.</span> <span class="nav-text">流水账</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#白痴的二三克"><span class="nav-number">3.</span> <span class="nav-text">白痴的二三克</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
