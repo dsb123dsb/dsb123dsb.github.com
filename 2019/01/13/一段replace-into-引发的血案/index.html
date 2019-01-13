@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="纸上得来终觉浅，绝知此事要躬行  最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。 在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。 通常使用replace into和insert into on deplicate key update 执行的逻辑  遇到PRIMARY KEY或UNIQUE索引的，">
+<meta name="description" content="纸上得来终觉浅，绝知此事要躬行  最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。 在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。 通常使用replace into和insert into on deplicate key update">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一段replace into 引发的血案">
 <meta property="og:url" content="https://dsb123dsb.github.io/2019/01/13/一段replace-into-引发的血案/index.html">
 <meta property="og:site_name" content="XX雨中人">
-<meta property="og:description" content="纸上得来终觉浅，绝知此事要躬行  最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。 在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。 通常使用replace into和insert into on deplicate key update 执行的逻辑  遇到PRIMARY KEY或UNIQUE索引的，">
+<meta property="og:description" content="纸上得来终觉浅，绝知此事要躬行  最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。 在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。 通常使用replace into和insert into on deplicate key update">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-13T07:29:03.360Z">
+<meta property="og:updated_time" content="2019-01-13T07:30:52.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一段replace into 引发的血案">
-<meta name="twitter:description" content="纸上得来终觉浅，绝知此事要躬行  最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。 在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。 通常使用replace into和insert into on deplicate key update 执行的逻辑  遇到PRIMARY KEY或UNIQUE索引的，">
+<meta name="twitter:description" content="纸上得来终觉浅，绝知此事要躬行  最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。 在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。 通常使用replace into和insert into on deplicate key update">
 
 
 
@@ -374,6 +374,7 @@
 <p>最近项目更新数据库，由于语句使用不善，踩了许多坑，特做此总结引以为戒。</p>
 <p>在向表中插入数据的时候，经常遇到这样的情况：1. 首先判断数据是否存在； 2. 如果不存在，则插入；3.如果存在，则更新。</p>
 <p>通常使用<code>replace into</code>和<code>insert into on deplicate key update</code></p>
+<a id="more"></a>
 <p>执行的逻辑</p>
 <ol>
 <li><p>遇到PRIMARY KEY或UNIQUE索引的，新记录与旧记录有冲突的（这里实际产生了异常duplicate key error），replace into会把旧记录删除，然后再插入新记录， insert into on deplicate key update则只会更新。</p>
