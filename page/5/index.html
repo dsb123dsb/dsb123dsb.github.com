@@ -294,6 +294,138 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/15/学习笔记-快速取整/" itemprop="url">
+                  学习笔记-快速取整
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-15T12:07:24+08:00" content="2016-11-15">
+              2016-11-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">基础杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/15/学习笔记-快速取整/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/15/学习笔记-快速取整/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/15/学习笔记-快速取整/" class="leancloud_visitors" data-flag-title="学习笔记-快速取整">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="每1s向-1-2-3-4-5-前面添加一个不重复的随机数，数组长度达到10结束"><a href="#每1s向-1-2-3-4-5-前面添加一个不重复的随机数，数组长度达到10结束" class="headerlink" title="每1s向[1,2,3,4,5]前面添加一个不重复的随机数，数组长度达到10结束"></a>每1s向[1,2,3,4,5]前面添加一个不重复的随机数，数组长度达到10结束</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> aa = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">   <span class="keyword">var</span> timer = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="keyword">var</span> random = <span class="built_in">Math</span>.random()*<span class="number">100</span>+<span class="number">1</span>|<span class="number">0</span>;<span class="comment">//快速取整</span></div><div class="line">       <span class="keyword">while</span> (aa.indexOf(random)&gt;<span class="number">-1</span>)&#123;</div><div class="line">           random = <span class="built_in">Math</span>.random()*<span class="number">100</span>+<span class="number">1</span>|<span class="number">0</span>;</div><div class="line">       &#125;</div><div class="line">       aa.unshift(random);</div><div class="line">       <span class="keyword">if</span>(aa.length==<span class="number">10</span>)clearInterval(timer);</div><div class="line">       <span class="built_in">console</span>.log(aa);</div><div class="line">   &#125;,<span class="number">1000</span>);</div></pre></td></tr></table></figure>
+<h1 id="位运算快速取整"><a href="#位运算快速取整" class="headerlink" title="位运算快速取整"></a>位运算快速取整</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.time(<span class="string">'计时器'</span>)</div><div class="line">		<span class="built_in">parseInt</span>(<span class="number">12222.22222</span>);</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'计时器'</span>);</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'计时器'</span>)</div><div class="line">		<span class="number">12222.22222</span>|<span class="number">0</span>;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'计时器'</span>);</div><div class="line">	<span class="built_in">console</span>.time(<span class="string">'计时器'</span>)</div><div class="line">		~~<span class="number">12222.22222</span>;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'计时器'</span>);</div><div class="line"><span class="comment">//计时器: 0.021ms</span></div><div class="line"><span class="comment">//计时器: 0.019ms</span></div><div class="line"><span class="comment">//计时器: 0.00781ms</span></div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/15/学习笔记-快速取整/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/07/主流动画实现方式总结/" itemprop="url">
                   主流动画实现方式总结
                 </a>
@@ -1485,143 +1617,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/24/浅谈Web缓存/" itemprop="url">
-                  浅谈Web缓存 
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-24T17:20:45+08:00" content="2016-09-24">
-              2016-09-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/基础杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">基础杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/24/浅谈Web缓存/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/浅谈Web缓存/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/09/24/浅谈Web缓存/" class="leancloud_visitors" data-flag-title="浅谈Web缓存 ">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p>&emsp;&emsp;在前端开发中，性能一直都是被大家所重视的一点，然而判断一个网站的性能最直观的就是看网页打开的速度。其中提高网页反应速度的一个方式就是使用缓存。一个优秀的缓存策略可以缩短网页请求资源的距离，减少延迟，并且由于缓存文件可以重复利用，还可以减少带宽，降低网络负荷。那么下面我们就来看看服务器端缓存的原理。</p>
-</blockquote>
-<h1 id="缓存分类"><a href="#缓存分类" class="headerlink" title="缓存分类"></a>缓存分类</h1><p>&emsp;&emsp;web缓存分为很多种，比如数据库缓存、代理服务器缓存、还有我们熟悉的CDN缓存，以及浏览器缓存。对于太多文字的阅读其实我是拒绝的，于是就画了个图来解释下。</p>
-<p>&emsp;&emsp;浏览器通过代理服务器向源服务器发起请求的原理如下图，</p>
-<p><img src="https://oci0xa33t.qnssl.com/%E7%BC%93%E5%AD%981.PNG" alt=""></p>
-<p>&emsp;&emsp;浏览器先向代理服务器发起Web请求，再将请求转发到源服务器。它属于共享缓存，所以很多地方都可以使用其缓存资源，因此对于节省流量有很大作用。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/24/浅谈Web缓存/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1667,7 +1662,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1675,7 +1670,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
