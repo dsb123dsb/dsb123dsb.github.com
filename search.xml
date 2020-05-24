@@ -4,6 +4,98 @@
   
     
     <entry>
+      <title><![CDATA[回溯算法]]></title>
+      <url>https://dsb123dsb.github.io/2020/05/24/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>解决一个回溯问题，实际上就是一个决策树的遍历过程</strong>。你只需要思考 3 个问题：</p>
+<p><strong>1、路径</strong>：也就是已经做出的选择。</p>
+<p><strong>2、选择列表</strong>：也就是你当前可以做的选择。</p>
+<p><strong>3、结束条件</strong>：也就是到达决策树底层，无法再做选择的条件。</p>
+<p>代码方面，回溯算法的框架：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">result = []</div><div class="line">function backtrack(路径, 选择列表):</div><div class="line">    if 满足结束条件:</div><div class="line">        result.add(路径)</div><div class="line">        return</div><div class="line"></div><div class="line">    for 选择 in 选择列表:</div><div class="line">        做选择</div><div class="line">        backtrack(路径, 选择列表)</div><div class="line">        撤销选择</div></pre></td></tr></table></figure>
+<p><strong>其核心就是 for 循环里面的递归，在递归调用之前「做选择」，在递归调用之后「撤销选择」</strong></p>
+<p>什么叫做选择和撤销选择呢，这个框架的底层原理是什么呢？下面我们就通过「全排列」这个问题来解开之前的疑惑，详细探究一下其中的奥妙！</p>
+<a id="more"></a>
+<h2 id="全排列问题"><a href="#全排列问题" class="headerlink" title="全排列问题"></a>全排列问题</h2><p>知道<code>n</code>个不重复的数，全排列共有 n! 个。PS：<strong>为了简单清晰起见，我们这次讨论的全排列问题不包含重复的数字</strong>。</p>
+<p>手动我们一般是这样计算：</p>
+<p>先固定第一位为 1，然后第二位可以是 2，那么第三位只能是 3；然后可以把第二位变成 3，第三位就只能是 2 了；然后就只能变化第一位，变成 2，然后再穷举后两位……</p>
+<p>其实这就是回溯算法，我们高中无师自通就会用，或者有的同学直接画出如下这棵回溯树，也可以成为决策树，遍历树上路径记录数字就是全排列：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf3eq7jl3dj30wa0icdwv.jpg" alt="image-20200524115509548"></p>
+<p><strong>为啥说这是决策树呢，因为你在每个节点上其实都在做决策</strong>：比如站在第二层第二个节点2，你现在就在做决策，可以选择 1 那条树枝，也可以选择 3 那条树枝。为啥只能在 1 和 3 之中选择呢？因为 2 这个树枝在你身后，这个选择你之前做过了，而全排列是不允许重复使用数字的。</p>
+<p><strong>现在可以解答开头的几个名词：[2]就是「路径」，记录你已经做过的选择；[1,3]就是「选择列表」，表示你当前可以做出的选择；「结束条件」就是遍历到树的底层，在这里就是选择列表为空的时候</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf3ghvm73dj30vw0jiqnb.jpg" alt="image-20200524130455093"></p>
+<p>完整代码实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 主函数，输入一组不重复的数字，返回它们的全排列 */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">permute</span>(<span class="params">nums</span>) </span>&#123;</div><div class="line">    <span class="comment">// 记录「路径」</span></div><div class="line">    <span class="keyword">let</span> res = [];</div><div class="line">    backtrack(nums, res, []);</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 路径：记录在 track 中</span></div><div class="line"><span class="comment">// 选择列表：nums 中不存在于 track 的那些元素</span></div><div class="line"><span class="comment">// 结束条件：nums 中的元素全都在 track 中出现</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">backtrack</span>(<span class="params">nums, res, track</span>) </span>&#123;</div><div class="line">    <span class="comment">// 触发结束条件</span></div><div class="line">    <span class="keyword">if</span> (track.length == nums.length) &#123;</div><div class="line">        res.push(track.slice());</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">        <span class="comment">// 排除不合法的选择</span></div><div class="line">        <span class="keyword">if</span> (track.includes(nums[i]))</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        <span class="comment">// 做选择</span></div><div class="line">        track.push(nums[i]);</div><div class="line">        <span class="comment">// 进入下一层决策树</span></div><div class="line">        backtrack(nums, res, track);</div><div class="line">        <span class="comment">// 取消选择</span></div><div class="line">        track.pop();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是必须说明的是，不管怎么优化，都符合回溯框架，而且时间复杂度都不可能低于 O(N!)，因为穷举整棵决策树是无法避免的。<strong>这也是回溯算法的一个特点，不像动态规划存在重叠子问题可以优化，回溯算法就是纯暴力穷举，复杂度一般都很高</strong>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回溯算法就是个多叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作，算法框架如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">backtrack(...):</div><div class="line">    <span class="keyword">for</span> 选择 <span class="keyword">in</span> 选择列表:</div><div class="line">        做选择</div><div class="line">        backtrack(...)</div><div class="line">        撤销选择</div></pre></td></tr></table></figure>
+<p><strong>写backtrack函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时，将「路径」记入结果集</strong>。</p>
+<p>其实想想看，回溯算法和动态规划是不是有点像呢？动态规划的三个需要明确的点就是「状态」「选择」和「base case」，是不是就对应着走过的「路径」，当前的「选择列表」和「结束条件」？</p>
+<p>某种程度上说，动态规划的暴力求解阶段就是回溯算法。只是有的问题具有重叠子问题性质，可以用 dp table 或者备忘录优化，将递归树大幅剪枝，这就变成了动态规划。而上面的问题，都没有重叠子问题，也就是回溯算法问题了，复杂度非常高是不可避免的。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 基础杂谈 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[龟兔赛跑，floyd判圈算法]]></title>
+      <url>https://dsb123dsb.github.io/2020/02/14/%E9%BE%9F%E5%85%94%E8%B5%9B%E8%B7%91%EF%BC%8Cfloyd%E5%88%A4%E5%9C%88%E7%AE%97%E6%B3%95/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<h2 id="算法推导"><a href="#算法推导" class="headerlink" title="算法推导"></a>算法推导</h2><p><img src="https://raw.githubusercontent.com/polar9527/polar9527.github.io/master/image/post/floydtortoiseandhare1.jpg" alt=""></p>
+<a id="more"></a>
+<p>当<code>hare</code>的移动速度是<code>tortoise</code>的 2 倍，<br><br>设起始点到环的入口的距离是<code>T</code>，环的长度是<code>C</code>，<br><br>当<code>tortoise</code>第一次走到环的入口<code>entry point</code>时，我们假设这是<code>tortoise</code>与<code>hare</code>之间的在环上的距离是<code>r</code>，<br><br>从<code>start point</code>开始出发到<code>tortoise</code>第一次走到环的入口时，<code>hare</code>移动的距离是 <code>T + r + k*C，k &gt;= 0</code>，<br><br>又因为，<code>hare</code>移动的速度是<code>tortoise</code>的两倍，且这时<code>tortoise</code>移动的距离是<code>T</code>，所以<code>hare</code>移动的距离是 2T。<br><br>得到等式 A <code>T + r + k*C = 2T，k &gt;= 0</code> 简化得到等式 B <code>r + k*C = T，k &gt;= 0</code><br></p>
+<p><img src="https://raw.githubusercontent.com/polar9527/polar9527.github.io/master/image/post/floydtortoiseandhare2.jpg" alt=""></p>
+<p>当 tortoise 第一次走到环的入口<code>entry point</code>时，而这时<code>tortoise</code>与<code>hare</code>之间的距离是 r，<br><br>那么如果<code>tortoise</code>现在就不继续移动的话，<code>hare</code>还需要往前走<code>C-r</code>才能追上<code>tortoise</code>。<br><br>但是<code>hare</code>在往前追赶<code>tortoise</code>的时候，<code>tortoise</code>也在移动，而<code>hare</code>的移动速度是<code>tortoise</code>的两倍，<br><br>所以<code>hare</code>可以追上<code>tortoise</code>,并且需要往前走<code>2*（C-r）</code>才能追上<code>tortoise</code>。<br></p>
+<p>当<code>hare</code>移动了<code>2*（C-r）</code>的距离追上<code>tortoise</code>的时候，<code>tortoise</code>从相对于环的入口<code>entry point</code>移动了<code>C-r</code>。<br></p>
+<p>所以，在<code>tortoise</code>与<code>hare</code>第一次在环上相遇时，环的入口<code>entry point</code>到这个点<code>meet point</code>的距离是<code>C-r</code>, 而从这个相遇点<code>meet point</code>再往前移动<code>r</code>，就又回到了环的入口<code>entry point</code>。<br></p>
+<p><img src="https://raw.githubusercontent.com/polar9527/polar9527.github.io/master/image/post/floydtortoiseandhare3.jpg" alt=""></p>
+<p>在<code>hare</code>与<code>tortoise</code>第一次相遇的这个时候，将<code>hare</code>从<code>meet point</code>重新放到起始点<code>start point</code>，<code>tortoise</code>仍放在这个相遇点<code>meet point</code>，<br><br>然后让它们以<strong>相同的速度</strong>开始移动，<br></p>
+<p>根据等式 B <code>r + k*C = T，k &gt;= 0</code>，<br></p>
+<p><code>tortoise</code>和<code>hare</code>必然会在环的入口点<code>entry point</code>再次相遇<br></p>
+<p>入口<code>entry point</code>找到后，就能很容易得到<code>T</code>，<br><br>然后入口<code>entry point</code>，让<code>tortoise</code>停下，<code>hare</code> 继续跑一圈，就能得到 <code>C</code>。<br></p>
+<h2 id="算法应用"><a href="#算法应用" class="headerlink" title="算法应用"></a>算法应用</h2><ol>
+<li>链表有环检测 两个指针，慢指针移动速度为 1，快指针移动速度为 2，判断两个指针是否相遇</li>
+<li>找出有环链表的入口节点 当两个指针相遇时，将其中一个指针重新放到链表头，然后让两个指针移动速度都为 1，当两个指针再次相遇，就找到了有环链表的入口节点</li>
+<li>计算环长度 在入口节点放置两个个指针，一个指针不动，一个指针移动速度为 1，两个指针相遇，就可计算出环的长度</li>
+</ol>
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><p>golang</p>
+<ol>
+<li>链表有环检测 <code>leetcode 141</code></li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * @lc app=leetcode id=141 lang=golang</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * [141] Linked List Cycle</span></div><div class="line"><span class="comment"> */</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasCycle</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> head == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">	t, h := head, head</div><div class="line">	started := <span class="literal">false</span></div><div class="line">	<span class="keyword">for</span> h != <span class="literal">nil</span> &amp;&amp; h.Next != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">if</span> t == h &#123;</div><div class="line">			<span class="keyword">if</span> started &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				started = <span class="literal">true</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		t = t.Next</div><div class="line">		h = h.Next.Next</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>找出有环链表的入口节点 <code>leetcode 142</code></li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * @lc app=leetcode id=142 lang=golang</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * [142] Linked List Cycle II</span></div><div class="line"><span class="comment"> */</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">detectCycle</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> cycPoint *ListNode</div><div class="line">	<span class="keyword">if</span> head == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> cycPoint</div><div class="line">	&#125;</div><div class="line">	t, h := head, head</div><div class="line">	started := <span class="literal">false</span></div><div class="line">	hasCycle := <span class="literal">false</span></div><div class="line">	<span class="keyword">for</span> h != <span class="literal">nil</span> &amp;&amp; h.Next != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">if</span> t == h &#123;</div><div class="line">			<span class="keyword">if</span> started &#123;</div><div class="line">				hasCycle = <span class="literal">true</span></div><div class="line">				<span class="keyword">break</span></div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				started = <span class="literal">true</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		t = t.Next</div><div class="line">		h = h.Next.Next</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> hasCycle &#123;</div><div class="line">		h = head</div><div class="line">		<span class="keyword">for</span> h != <span class="literal">nil</span> &amp;&amp; t != <span class="literal">nil</span> &#123;</div><div class="line">			<span class="keyword">if</span> h == t &#123;</div><div class="line">				cycPoint = h</div><div class="line">				<span class="keyword">break</span></div><div class="line">			&#125;</div><div class="line">			h = h.Next</div><div class="line">			t = t.Next</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> cycPoint</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="写在结尾"><a href="#写在结尾" class="headerlink" title="写在结尾"></a>写在结尾</h2><p>算法实现仔细想想就是初中做过的数学题目啊，哎，过了这么多年竟然忘的一干二净。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 基础杂谈 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> algorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[贪心、分治、回溯、动态回归比较分析]]></title>
       <url>https://dsb123dsb.github.io/2019/10/21/%E8%B4%AA%E5%BF%83%E3%80%81%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF%E3%80%81%E5%8A%A8%E6%80%81%E5%9B%9E%E5%BD%92%E6%AF%94%E8%BE%83%E5%88%86%E6%9E%90/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -1747,9 +1839,9 @@ brew install flow
         
         <tags>
             
-            <tag> Symbol </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> Symbol </tag>
             
         </tags>
         
@@ -2084,9 +2176,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> ES6 </tag>
-            
             <tag> 继承 </tag>
+            
+            <tag> ES6 </tag>
             
         </tags>
         
