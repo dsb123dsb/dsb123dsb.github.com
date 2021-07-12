@@ -1498,9 +1498,9 @@ brew install flow
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 响应式 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -2017,9 +2017,9 @@ const nodes = Array.from(foo);
         
         <tags>
             
-            <tag> ES6 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> ES6 </tag>
             
         </tags>
         

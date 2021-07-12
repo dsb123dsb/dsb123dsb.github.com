@@ -1,38 +1,1794 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="响应式,css," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XX雨中人" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="纸上得来终觉浅，绝知此事要躬行  前几天看阮一峰微博发了个简略的响应式字体的代码，专门搜了下文章系统地学习了一遍—–原文猛搓——本文样式代码采用 SCSS。 前言那么多的文章讲了响应式的网站如何布局，使用 CSS 如何实现，如何 Blah Blah 的。但是，我们都忘了很重要的一点——对字体大小的响应式控制。现在的很多网站，从布局上来说，尽管是响应式的(当然，或许可以说成所谓响应式的)。但是，从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现font-size响应式">
+<meta property="og:url" content="https://dsb123dsb.github.io/2017/04/28/%E5%AE%9E%E7%8E%B0font-size%E5%93%8D%E5%BA%94%E5%BC%8F/index.html">
+<meta property="og:site_name" content="XX雨中人">
+<meta property="og:description" content="纸上得来终觉浅，绝知此事要躬行  前几天看阮一峰微博发了个简略的响应式字体的代码，专门搜了下文章系统地学习了一遍—–原文猛搓——本文样式代码采用 SCSS。 前言那么多的文章讲了响应式的网站如何布局，使用 CSS 如何实现，如何 Blah Blah 的。但是，我们都忘了很重要的一点——对字体大小的响应式控制。现在的很多网站，从布局上来说，尽管是响应式的(当然，或许可以说成所谓响应式的)。但是，从">
+<meta property="og:locale">
+<meta property="og:image" content="http://i.imgur.com/EeID4wK.jpg">
+<meta property="article:published_time" content="2017-04-28T01:24:20.000Z">
+<meta property="article:modified_time" content="2017-10-03T13:53:51.000Z">
+<meta property="article:author" content="qijiIng">
+<meta property="article:tag" content="响应式">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://i.imgur.com/EeID4wK.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://dsb123dsb.github.io/2017/04/28/实现font-size响应式/"/>
+
+  <title> 实现font-size响应式 | XX雨中人 </title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">XX雨中人</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">纸上得来终觉浅，绝知此事要躬行</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+    <a class="highOne" title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&amp;&amp;s.height<n&amp;&amp;s.width>t&amp;&amp;s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&amp;&amp;!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&amp;&amp;t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>High一下!</a>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                实现font-size响应式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-28T09:24:20+08:00" content="2017-04-28">
+              2017-04-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" itemprop="url" rel="index">
+                    <span itemprop="name">技术分享</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/04/28/%E5%AE%9E%E7%8E%B0font-size%E5%93%8D%E5%BA%94%E5%BC%8F/" class="leancloud_visitors" data-flag-title="实现font-size响应式">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<p>前几天看阮一峰微博发了个简略的响应式字体的代码，专门搜了下文章系统地学习了一遍—–<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000006824046">原文猛搓——</a><br>本文样式代码采用 SCSS。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>那么多的文章讲了响应式的网站如何布局，使用 CSS 如何实现，如何 Blah Blah 的。但是，我们都忘了很重要的一点——对字体大小的响应式控制。<br>现在的很多网站，从布局上来说，尽管是响应式的(当然，或许可以说成所谓响应式的)。但是，从字体上来说，却不一定是响应式的。虽然，每个网站可能会通过某些方式(比如频繁使用<code>@media</code> )来让自己的网站在不同的屏幕大小下显示不同大小的字体，但是，这样不能叫做响应式，这<em>只是一种适应式</em>的做法。</p>
+<p>那么，怎么样才能对我们的 font-size 实现真正的响应式呢？</p>
+<p>我们需要做的主要有以下两点：</p>
+<ol>
+<li><p>制定一个最大的和最小的屏幕宽度值，我们的 <code>font-size</code> 应该是在这个屏幕范围内平滑均匀的变化；<br>不可能让字体大小一直不停的变化。试想一下，自己一直缩小或者方法浏览器，字体一直变小或者变大的场景。</p>
+</li>
+<li><p>制定最大和最小的 <code>font-siz</code>e，屏幕大小小于最小的屏幕宽度值的时候，应用最小的 font-size，反之，应用最大的 font-size；</p>
+</li>
+</ol>
+<p>OK，计划制定好了，那么，应该如何实施呢？我们需要用到哪些技术呢？<br>其实要用到的技术不多，只是，我们需要把脑子转一下。</p>
+<ul>
+<li>@media：CSS Level 3 提供的媒体查询，只要做过响应式，或者任何适应屏幕功能的肯定用过这个属性。所以，在此不过多解释此属性，详细可查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media">@media | MDN</a></li>
+<li>vw：Viewport 单位，1vw 相当于屏幕宽度的百分之一。此处也不过多解释，详细可查看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/length"> length | CSS</a></li>
+<li>calc：这是 CSS 提供的一个非常强大的属性，可以用来动态计算 CSS 的值。我们的功能主要就是通过这个函数来实现。详细可查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/calc">calc | MDN</a></li>
+</ul>
+<p>OK，需要的技术也齐全了。那么，现在就来一步一步实现。<br><span id="more"></span></p>
+<h1 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h1><p>按照上文中所说的计划那样，我们需要定义四个值，他们分别是最小屏幕宽度，最大屏幕宽度，最小字体，最大字体<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	$min-<span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">	$max-<span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">	$min-screen: <span class="number">600px</span>;</span><br><span class="line">	$max-screen: <span class="number">1200px</span>;</span><br><span class="line">````</span><br><span class="line">不过，使用 px 来定义字体大小显得不是很优雅，我们可以使用 rem 来定义我们的字体。那么，这时候，就需要先对网站的根元素设置字体大小了。</span><br><span class="line">```css</span><br><span class="line">	<span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">	    <span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure><br>然后，再来更新我们的变量。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$min-<span class="attribute">font-size</span>: <span class="number">1.4rem</span>;</span><br><span class="line">$max-<span class="attribute">font-size</span>: <span class="number">1.8rem</span>;</span><br><span class="line">$min-screen: <span class="number">600px</span>;</span><br><span class="line">$max-screen: <span class="number">1200px</span>;</span><br></pre></td></tr></table></figure><br>我们把我们的变量定义和根元素的 font-size 放在文件的顶部。在这里，我们就不写那些相关的 reset 等样式了。</p>
+<h1 id="加入测试内容"><a href="#加入测试内容" class="headerlink" title="加入测试内容"></a>加入测试内容</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>This is Header.<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="使用-media-对限制字体大小边界值"><a href="#使用-media-对限制字体大小边界值" class="headerlink" title="使用 @media 对限制字体大小边界值"></a>使用 <code>@media</code> 对限制字体大小边界值</h1><p>上文中说过，在我们的屏幕宽度小于 600px 的时候，字体大小为 1.4rem，屏幕宽度大于 1200px 的时候，字体大小为 1.8rem。这个功能实现起来很简单，只需要应用相应的一小段媒体查询就行了。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: $max-font-size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: $min-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: $min-font-size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>OK，就这么一段代码，我们就可以将字体大小的边界值进行限制。在屏幕宽度小于或者大于对应的屏幕宽度值的时候，我们的字体大小都会保持在一个恒定的值。</p>
+<p>那么，边界限制做好了，接下来就是要实现真正的响应式了。怎么说呢？我们要让我们的 <code>font-size</code> 在 <code>600px ~ 1200px</code> 的屏幕宽度范围内平滑的变化。当然，这还不够，并不是说，只是给 <code>font-size</code> 设置一个百分比或者任何其他的相对单位，然后让这个字体能够在放大缩小屏幕的同时也能够放大缩小。我们要做的，是要通过精确的大小控制来实现响应式。</p>
+<h1 id="使用-calc-函数实现字体大小的响应式"><a href="#使用-calc-函数实现字体大小的响应式" class="headerlink" title="使用 calc 函数实现字体大小的响应式"></a>使用 <code>calc</code> 函数实现字体大小的响应式</h1><p>仔细看看上文中对字体大小边界值的限制的代码，已经有两个 <code>@media</code> 了，在这个部分，我们肯定还要加一个 <code>@media</code>，是不是显得有点多余？所以，我们可以稍微精简一下。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">article</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: $min-font-size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $min-screen) <span class="keyword">and</span> (<span class="attribute">max-width</span>: $max-screen) &#123;</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: $max-font-size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>只要两个 <code>@media</code> 其实就够了。对于不在媒体查询范围内的，只需要设置一个默认值就行了。但是，要注意的是，这个默认值一定要写在两个媒体查询规则的前面。否则，会由于 CSS 的层叠的特性，后声明的样式会覆盖掉先声明的样式，从而导致媒体查询规则不起作用。</p>
+<p>那么，要实现在这个屏幕宽度范围内精确平滑的变化，肯定需要用到一点数学计算。</p>
+<ol>
+<li><p>font-size 变化的范围是 1.8rem - 1.4rem = 0.4rem；</p>
+</li>
+<li><p>屏幕宽度的变化范围是 1200px - 600px = 600px；</p>
+</li>
+<li><p>最小的 font-size 是 1.4rem。那么，屏幕宽度只要大于 600px，这个值肯定会增加，同时，只要屏幕宽度达到 1200px，这个值也达到 1.8rem，然后便不再变化；</p>
+</li>
+</ol>
+<p>可以看下图：</p>
+<p><img src="http://i.imgur.com/EeID4wK.jpg" alt=""></p>
+<p>比如，我们现在有三种屏幕宽度，分别是 600px，1000px，1200px。那么，仔细观察左边的参考线，我们将最小的那个屏幕宽度去掉，相当于就剩下了两个值，一个是 a，一个是 b。</p>
+<p>由于 <code>1200px</code> 是我们设置的屏幕宽度的最大值，那么，也就是说，b 的变化范围最大也就是 a 的长度。通俗一点说就是，可以把 a 和 b 看成进度条，a 为 100% 的长度，b 为不断增加或者减少的长度。所以，这里就存在了一个比例值，当 b 为 0 的时候，这个比例也为 0，当 b 为 100% 的时候，这个比例就是 1。</p>
+<p>那么，按照这样的思路，转换到对应 font-size 的变化：变化范围是 0.4rem，这是分母，那么，分子该如何计算呢？我们怎么知道字体增加了多少呢？</p>
+<p>此处肯定是没有减少的。我们是在 600px ~ 1200px 之间变化的，最小的字体为 1.4rem，无论怎么算，字体大小都不会再减小了。<br>所以，此处还有一个小小的转换。想一想，我们变化的不只是字体大小，还有屏幕宽度也在变化。所以，就像图片解释的那样，可以使用屏幕宽度的计算来得到一个相应的比例，然后，乘以 font-size 的变化范围 0.4rem，就可以得到我们增加的字体大小了。然后，在最小 font-size 的基础之上加上这个变化的范围，就可以得到在对应屏幕宽度下的精准的 font-size了。</p>
+<p>所以，使用 <code>calc</code> 可以这样写：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $min-screen) <span class="keyword">and</span> (<span class="attribute">max-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="built_in">calc</span>($min-font-size + (<span class="number">1.8</span> - <span class="number">1.4</span>) * ((<span class="number">100vw</span> - $min-screen) / (<span class="number">1200</span> - <span class="number">600</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意，<code>calc</code> 函数在计算除法的时候，/ 右边只能是数字，不能带单位。<code>*</code> 要求至少一个参数是数字。</p>
+</blockquote>
+<p>对这个式子我也解释一下，可以看到，其中有个表达式是 <code>100vw - 600px</code>，这是什么意思呢？<br>转换成文字：浏览器可视区域的宽度减去最小宽度。</p>
+<p>其实理解起来很简单，举个例子：假设现在屏幕宽度为 <code>1000px</code>，那么，<code>100vw - 600px</code> 得到的结果为 <code>400px</code>，然后，除以 600，最后得到的是 2 / 3。然后，这个值去乘以 <code>0.4rem</code>，那么，这样就能计算出增加的字体大小值了，然后加上 <code>1.4rem</code>，就能得到最终的一个 <code>font-size</code>了。</p>
+<p>所以，就这样，我们就对 <code>font-size</code> 实现了响应式。不用再通过各种屏幕大小的媒体查询来变化了。<br>值得庆幸的是，此规则对于 <code>line-height</code> 同样适用。</p>
+<p>以下是完整的 SCSS 代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$min-<span class="attribute">font-size</span>: <span class="number">1.4rem</span>;</span><br><span class="line">$max-<span class="attribute">font-size</span>: <span class="number">1.8rem</span>;</span><br><span class="line">$min-screen: <span class="number">600px</span>;</span><br><span class="line">$max-screen: <span class="number">1200px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">article</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: $min-font-size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $min-screen) <span class="keyword">and</span> (<span class="attribute">max-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="built_in">calc</span>($min-font-size + (<span class="number">2</span> - <span class="number">1.4</span>) * ((<span class="number">100vw</span> - $min-screen) / (<span class="number">1200</span> - <span class="number">800</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: $max-font-size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>References</p>
+<p>   <a target="_blank" rel="noopener" href="https://madebymike.com.au/writing/precise-control-responsive-typography/">Precise control over responsive typography</a></p>
+<p>   <a target="_blank" rel="noopener" href="http://blog.typekit.com/2016/08/17/flexible-typography-with-css-locks/?utm_source=Responsive+Design+Weekly&amp;utm_campaign=dbc98f86d4-Responsive_Design_Weekly_222&amp;utm_medium=email&amp;utm_term=0_df65b6d7c8-dbc98f86d4-59087657&amp;goal=0_df65b6d7c8-dbc98f86d4-59087657&amp;mc_cid=dbc98f86d4&amp;mc_eid=142e875650">Flexible typography with CSS locks</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://oci0xa33t.qnssl.com/%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E7%A0%81.png" alt=" WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://oci0xa33t.qnssl.com/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E6%AC%BE%E7%A0%81.jpg" alt=" Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/" rel="tag">#响应式</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/17/vue2-0%E4%BB%BF%E9%A5%BF%E4%BA%86%E4%B9%88webApp%E8%B8%A9%E5%9D%91%E6%8C%87%E5%8D%97/" rel="next" title="vue2.0仿饿了么webApp踩坑指南">
+                <i class="fa fa-chevron-left"></i> vue2.0仿饿了么webApp踩坑指南
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/30/%E5%A6%82%E4%BD%95%E7%94%A8%E5%8E%9F%E7%94%9F-JS-%E5%AE%9E%E7%8E%B0%E6%89%8B%E5%8A%BF%E8%A7%A3%E9%94%81%E7%BB%84%E4%BB%B6/" rel="prev" title="如何用原生 JS 实现手势解锁组件">
+                如何用原生 JS 实现手势解锁组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/dsb123dsb" target="_blank" title="gitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  gitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/dsb123dsb" target="_blank" title="twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">定义变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E5%85%A5%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9"><span class="nav-number">3.</span> <span class="nav-text">加入测试内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-media-%E5%AF%B9%E9%99%90%E5%88%B6%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F%E8%BE%B9%E7%95%8C%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">使用 @media 对限制字体大小边界值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-calc-%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">使用 calc 函数实现字体大小的响应式</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qijiIng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user">本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye">本站总访问量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("6Q7lI0M9c86x08JBJXNkY3NG-gzGzoHsz", "qQ5n6b9g46wevCSnOV6KD9HX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                实现font-size响应式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-28T09:24:20+08:00" content="2017-04-28">
+              2017-04-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" itemprop="url" rel="index">
+                    <span itemprop="name">技术分享</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/04/28/%E5%AE%9E%E7%8E%B0font-size%E5%93%8D%E5%BA%94%E5%BC%8F/" class="leancloud_visitors" data-flag-title="实现font-size响应式">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>纸上得来终觉浅，绝知此事要躬行</p>
+</blockquote>
+<p>前几天看阮一峰微博发了个简略的响应式字体的代码，专门搜了下文章系统地学习了一遍—–<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000006824046">原文猛搓——</a><br>本文样式代码采用 SCSS。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>那么多的文章讲了响应式的网站如何布局，使用 CSS 如何实现，如何 Blah Blah 的。但是，我们都忘了很重要的一点——对字体大小的响应式控制。<br>现在的很多网站，从布局上来说，尽管是响应式的(当然，或许可以说成所谓响应式的)。但是，从字体上来说，却不一定是响应式的。虽然，每个网站可能会通过某些方式(比如频繁使用<code>@media</code> )来让自己的网站在不同的屏幕大小下显示不同大小的字体，但是，这样不能叫做响应式，这<em>只是一种适应式</em>的做法。</p>
+<p>那么，怎么样才能对我们的 font-size 实现真正的响应式呢？</p>
+<p>我们需要做的主要有以下两点：</p>
+<ol>
+<li><p>制定一个最大的和最小的屏幕宽度值，我们的 <code>font-size</code> 应该是在这个屏幕范围内平滑均匀的变化；<br>不可能让字体大小一直不停的变化。试想一下，自己一直缩小或者方法浏览器，字体一直变小或者变大的场景。</p>
+</li>
+<li><p>制定最大和最小的 <code>font-siz</code>e，屏幕大小小于最小的屏幕宽度值的时候，应用最小的 font-size，反之，应用最大的 font-size；</p>
+</li>
+</ol>
+<p>OK，计划制定好了，那么，应该如何实施呢？我们需要用到哪些技术呢？<br>其实要用到的技术不多，只是，我们需要把脑子转一下。</p>
+<ul>
+<li>@media：CSS Level 3 提供的媒体查询，只要做过响应式，或者任何适应屏幕功能的肯定用过这个属性。所以，在此不过多解释此属性，详细可查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media">@media | MDN</a></li>
+<li>vw：Viewport 单位，1vw 相当于屏幕宽度的百分之一。此处也不过多解释，详细可查看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/length"> length | CSS</a></li>
+<li>calc：这是 CSS 提供的一个非常强大的属性，可以用来动态计算 CSS 的值。我们的功能主要就是通过这个函数来实现。详细可查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/calc">calc | MDN</a></li>
+</ul>
+<p>OK，需要的技术也齐全了。那么，现在就来一步一步实现。<br><span id="more"></span></p>
+<h1 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h1><p>按照上文中所说的计划那样，我们需要定义四个值，他们分别是最小屏幕宽度，最大屏幕宽度，最小字体，最大字体<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	$min-<span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">	$max-<span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">	$min-screen: <span class="number">600px</span>;</span><br><span class="line">	$max-screen: <span class="number">1200px</span>;</span><br><span class="line">````</span><br><span class="line">不过，使用 px 来定义字体大小显得不是很优雅，我们可以使用 rem 来定义我们的字体。那么，这时候，就需要先对网站的根元素设置字体大小了。</span><br><span class="line">```css</span><br><span class="line">	<span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">	    <span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure><br>然后，再来更新我们的变量。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$min-<span class="attribute">font-size</span>: <span class="number">1.4rem</span>;</span><br><span class="line">$max-<span class="attribute">font-size</span>: <span class="number">1.8rem</span>;</span><br><span class="line">$min-screen: <span class="number">600px</span>;</span><br><span class="line">$max-screen: <span class="number">1200px</span>;</span><br></pre></td></tr></table></figure><br>我们把我们的变量定义和根元素的 font-size 放在文件的顶部。在这里，我们就不写那些相关的 reset 等样式了。</p>
+<h1 id="加入测试内容"><a href="#加入测试内容" class="headerlink" title="加入测试内容"></a>加入测试内容</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>This is Header.<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="使用-media-对限制字体大小边界值"><a href="#使用-media-对限制字体大小边界值" class="headerlink" title="使用 @media 对限制字体大小边界值"></a>使用 <code>@media</code> 对限制字体大小边界值</h1><p>上文中说过，在我们的屏幕宽度小于 600px 的时候，字体大小为 1.4rem，屏幕宽度大于 1200px 的时候，字体大小为 1.8rem。这个功能实现起来很简单，只需要应用相应的一小段媒体查询就行了。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: $max-font-size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: $min-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: $min-font-size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>OK，就这么一段代码，我们就可以将字体大小的边界值进行限制。在屏幕宽度小于或者大于对应的屏幕宽度值的时候，我们的字体大小都会保持在一个恒定的值。</p>
+<p>那么，边界限制做好了，接下来就是要实现真正的响应式了。怎么说呢？我们要让我们的 <code>font-size</code> 在 <code>600px ~ 1200px</code> 的屏幕宽度范围内平滑的变化。当然，这还不够，并不是说，只是给 <code>font-size</code> 设置一个百分比或者任何其他的相对单位，然后让这个字体能够在放大缩小屏幕的同时也能够放大缩小。我们要做的，是要通过精确的大小控制来实现响应式。</p>
+<h1 id="使用-calc-函数实现字体大小的响应式"><a href="#使用-calc-函数实现字体大小的响应式" class="headerlink" title="使用 calc 函数实现字体大小的响应式"></a>使用 <code>calc</code> 函数实现字体大小的响应式</h1><p>仔细看看上文中对字体大小边界值的限制的代码，已经有两个 <code>@media</code> 了，在这个部分，我们肯定还要加一个 <code>@media</code>，是不是显得有点多余？所以，我们可以稍微精简一下。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">article</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: $min-font-size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $min-screen) <span class="keyword">and</span> (<span class="attribute">max-width</span>: $max-screen) &#123;</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: $max-font-size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>只要两个 <code>@media</code> 其实就够了。对于不在媒体查询范围内的，只需要设置一个默认值就行了。但是，要注意的是，这个默认值一定要写在两个媒体查询规则的前面。否则，会由于 CSS 的层叠的特性，后声明的样式会覆盖掉先声明的样式，从而导致媒体查询规则不起作用。</p>
+<p>那么，要实现在这个屏幕宽度范围内精确平滑的变化，肯定需要用到一点数学计算。</p>
+<ol>
+<li><p>font-size 变化的范围是 1.8rem - 1.4rem = 0.4rem；</p>
+</li>
+<li><p>屏幕宽度的变化范围是 1200px - 600px = 600px；</p>
+</li>
+<li><p>最小的 font-size 是 1.4rem。那么，屏幕宽度只要大于 600px，这个值肯定会增加，同时，只要屏幕宽度达到 1200px，这个值也达到 1.8rem，然后便不再变化；</p>
+</li>
+</ol>
+<p>可以看下图：</p>
+<p><img src="http://i.imgur.com/EeID4wK.jpg" alt=""></p>
+<p>比如，我们现在有三种屏幕宽度，分别是 600px，1000px，1200px。那么，仔细观察左边的参考线，我们将最小的那个屏幕宽度去掉，相当于就剩下了两个值，一个是 a，一个是 b。</p>
+<p>由于 <code>1200px</code> 是我们设置的屏幕宽度的最大值，那么，也就是说，b 的变化范围最大也就是 a 的长度。通俗一点说就是，可以把 a 和 b 看成进度条，a 为 100% 的长度，b 为不断增加或者减少的长度。所以，这里就存在了一个比例值，当 b 为 0 的时候，这个比例也为 0，当 b 为 100% 的时候，这个比例就是 1。</p>
+<p>那么，按照这样的思路，转换到对应 font-size 的变化：变化范围是 0.4rem，这是分母，那么，分子该如何计算呢？我们怎么知道字体增加了多少呢？</p>
+<p>此处肯定是没有减少的。我们是在 600px ~ 1200px 之间变化的，最小的字体为 1.4rem，无论怎么算，字体大小都不会再减小了。<br>所以，此处还有一个小小的转换。想一想，我们变化的不只是字体大小，还有屏幕宽度也在变化。所以，就像图片解释的那样，可以使用屏幕宽度的计算来得到一个相应的比例，然后，乘以 font-size 的变化范围 0.4rem，就可以得到我们增加的字体大小了。然后，在最小 font-size 的基础之上加上这个变化的范围，就可以得到在对应屏幕宽度下的精准的 font-size了。</p>
+<p>所以，使用 <code>calc</code> 可以这样写：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $min-screen) <span class="keyword">and</span> (<span class="attribute">max-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="built_in">calc</span>($min-font-size + (<span class="number">1.8</span> - <span class="number">1.4</span>) * ((<span class="number">100vw</span> - $min-screen) / (<span class="number">1200</span> - <span class="number">600</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意，<code>calc</code> 函数在计算除法的时候，/ 右边只能是数字，不能带单位。<code>*</code> 要求至少一个参数是数字。</p>
+</blockquote>
+<p>对这个式子我也解释一下，可以看到，其中有个表达式是 <code>100vw - 600px</code>，这是什么意思呢？<br>转换成文字：浏览器可视区域的宽度减去最小宽度。</p>
+<p>其实理解起来很简单，举个例子：假设现在屏幕宽度为 <code>1000px</code>，那么，<code>100vw - 600px</code> 得到的结果为 <code>400px</code>，然后，除以 600，最后得到的是 2 / 3。然后，这个值去乘以 <code>0.4rem</code>，那么，这样就能计算出增加的字体大小值了，然后加上 <code>1.4rem</code>，就能得到最终的一个 <code>font-size</code>了。</p>
+<p>所以，就这样，我们就对 <code>font-size</code> 实现了响应式。不用再通过各种屏幕大小的媒体查询来变化了。<br>值得庆幸的是，此规则对于 <code>line-height</code> 同样适用。</p>
+<p>以下是完整的 SCSS 代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$min-<span class="attribute">font-size</span>: <span class="number">1.4rem</span>;</span><br><span class="line">$max-<span class="attribute">font-size</span>: <span class="number">1.8rem</span>;</span><br><span class="line">$min-screen: <span class="number">600px</span>;</span><br><span class="line">$max-screen: <span class="number">1200px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">article</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: $min-font-size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $min-screen) <span class="keyword">and</span> (<span class="attribute">max-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="built_in">calc</span>($min-font-size + (<span class="number">2</span> - <span class="number">1.4</span>) * ((<span class="number">100vw</span> - $min-screen) / (<span class="number">1200</span> - <span class="number">800</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: $max-screen) &#123;</span><br><span class="line">    <span class="selector-tag">article</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: $max-font-size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>References</p>
+<p>   <a target="_blank" rel="noopener" href="https://madebymike.com.au/writing/precise-control-responsive-typography/">Precise control over responsive typography</a></p>
+<p>   <a target="_blank" rel="noopener" href="http://blog.typekit.com/2016/08/17/flexible-typography-with-css-locks/?utm_source=Responsive+Design+Weekly&amp;utm_campaign=dbc98f86d4-Responsive_Design_Weekly_222&amp;utm_medium=email&amp;utm_term=0_df65b6d7c8-dbc98f86d4-59087657&amp;goal=0_df65b6d7c8-dbc98f86d4-59087657&amp;mc_cid=dbc98f86d4&amp;mc_eid=142e875650">Flexible typography with CSS locks</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://oci0xa33t.qnssl.com/%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E7%A0%81.png" alt=" WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://oci0xa33t.qnssl.com/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E6%AC%BE%E7%A0%81.jpg" alt=" Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/" rel="tag">#响应式</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/17/vue2-0%E4%BB%BF%E9%A5%BF%E4%BA%86%E4%B9%88webApp%E8%B8%A9%E5%9D%91%E6%8C%87%E5%8D%97/" rel="next" title="vue2.0仿饿了么webApp踩坑指南">
+                <i class="fa fa-chevron-left"></i> vue2.0仿饿了么webApp踩坑指南
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/30/%E5%A6%82%E4%BD%95%E7%94%A8%E5%8E%9F%E7%94%9F-JS-%E5%AE%9E%E7%8E%B0%E6%89%8B%E5%8A%BF%E8%A7%A3%E9%94%81%E7%BB%84%E4%BB%B6/" rel="prev" title="如何用原生 JS 实现手势解锁组件">
+                如何用原生 JS 实现手势解锁组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/dsb123dsb" target="_blank" title="gitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  gitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/dsb123dsb" target="_blank" title="twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">定义变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E5%85%A5%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9"><span class="nav-number">3.</span> <span class="nav-text">加入测试内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-media-%E5%AF%B9%E9%99%90%E5%88%B6%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F%E8%BE%B9%E7%95%8C%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">使用 @media 对限制字体大小边界值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-calc-%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">使用 calc 函数实现字体大小的响应式</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qijiIng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user">本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye">本站总访问量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("6Q7lI0M9c86x08JBJXNkY3NG-gzGzoHsz", "qQ5n6b9g46wevCSnOV6KD9HX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>
